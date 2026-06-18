@@ -409,6 +409,40 @@ body {
   image-rendering: pixelated; 
 }
 
+/* NAVIGATION */
+.nav-content {
+  display: flex;
+  gap: 8px;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  overflow-x: auto;
+  padding: 4px; /* Opsional untuk memberi ruang di dalam panel */
+
+  /* Alternatif menggunakan tinggi minimal */
+  min-height: 50px; 
+  align-items: center; /* Tombol tetap di tengah secara vertikal */
+  padding: 4px 8px;
+}
+
+/* Mengatur ukuran dan tampilan tombol secara konsisten */
+.nav-link {
+  flex: 1;
+  text-align: center;
+  white-space: nowrap;
+  font-size: 11px;
+  padding: 6px 2px;
+  text-decoration: none; /* Menghilangkan garis bawah bawaan link */
+  display: block;
+}
+
+/* Mengatur scrollbar agar terlihat lebih pixel-art/estetik (opsional) */
+.nav-content::-webkit-scrollbar {
+  height: 4px;
+}
+.nav-content::-webkit-scrollbar-thumb {
+  background-color: #888;
+}
+
 /* ===== HEADER ===== */
 #header-panel {
   display: block;
@@ -527,9 +561,9 @@ body {
 /* ===== DARK MODE TOGGLE ===== */
 #theme-toggle-wrap {
   position: fixed;
-  top: 16px;
+  bottom: 16px;
   right: 16px;
-  z-index: 100;
+  z-index: 9999;
 }
 
 #theme-toggle {
