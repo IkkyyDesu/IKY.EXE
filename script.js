@@ -216,8 +216,27 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 });
 
+/* ===== LAMPPOST BUILDER ===== */
+function buildLampposts() {
+  const container = document.getElementById('lampposts');
+  const count = 6; // Jumlah tiang lampu
+
+  for (let i = 0; i < count; i++) {
+    const post = document.createElement('div');
+    post.className = 'lamppost';
+    
+    const light = document.createElement('div');
+    light.className = 'lamp-light';
+    
+    post.appendChild(light);
+    container.appendChild(post);
+  }
+}
+
 /* ===== INIT ===== */
 buildCity();
 buildStars();
 buildClouds();
 initTheme();
+updateMood();
+buildLampposts();
