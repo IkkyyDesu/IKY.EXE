@@ -227,4 +227,4 @@ buildStars();
 buildClouds();
 initTheme();
 updateMood();
-buildLampposts();
+buildLampposts(); 
