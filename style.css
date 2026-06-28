@@ -3,73 +3,75 @@
 
 
 :root {
-  /* SYNTHWAVE GLOBAL TOKENS */
-  --sw-hot-pink:    #FF2D78;
-  --sw-purple:      #BF5FFF;
-  --sw-cyan:        #0FF4FF;
-  --sw-yellow:      #FFE566;
-  --sw-orange:      #FF7043;
-  --sw-deep:        #0D0221;
+  /* TOKYO PALETTE — Shinjuku neon meets Shibuya sunset */
+  --tw-red:         #E8002D;   /* Tokyo Tower red */
+  --tw-gold:        #F5A623;   /* lantern gold */
+  --tw-sakura:      #FFB7C5;   /* sakura pink */
+  --tw-indigo:      #1B2A6B;   /* deep Tokyo night */
+  --tw-teal:        #00C9B1;   /* neon signboard teal */
+  --tw-lavender:    #C9B8FF;   /* purple haze over skyline */
+  --tw-cream:       #FFF8EE;   /* paper lantern cream */
+  --tw-charcoal:    #1A1A2E;   /* pre-dawn sky */
   --magenta:        #FF2D78;
-  --cyan:           #0FF4FF;
+  --cyan:           #00C9B1;
   --pixel-size: 4px;
- 
-  /* LIGHT MODE - synthwave sunset dusk */
-  --bg-sky:         #FF6B9D;
-  --bg-sky2:        #C850C0;
-  --cloud:          #FFB3D1;
-  --city-wall:      #6B2FA0;
-  --city-wall2:     #4A1570;
-  --city-window:    #0FF4FF;
-  --city-window-lit:#FF2D78;
-  --text-primary:   #1A0533;
-  --text-secondary: #7B2FBE;
-  --panel-bg:       rgba(255,230,245,0.88);
-  --panel-border:   #BF5FFF;
-  --panel-header:   #7B2FBE;
-  --panel-header-text: #FFE0F7;
-  --accent:         #7B2FBE;
-  --link-color:     #FF2D78;
+
+  /* LIGHT MODE — Shinjuku sunset dusk */
+  --bg-sky:         #FF8C69;   /* warm sunset orange */
+  --bg-sky2:        #C0392B;   /* deep red horizon */
+  --cloud:          #FFD6C0;
+  --city-wall:      #1B2A6B;   /* indigo building */
+  --city-wall2:     #0F1A45;
+  --city-window:    #00C9B1;   /* teal window glow */
+  --city-window-lit:#F5A623;   /* gold lit window */
+  --text-primary:   #1A1A2E;
+  --text-secondary: #1B2A6B;
+  --panel-bg:       rgba(255,248,238,0.90);
+  --panel-border:   #1B2A6B;
+  --panel-header:   #E8002D;
+  --panel-header-text: #FFF8EE;
+  --accent:         #E8002D;
+  --link-color:     #1B2A6B;
   --star-opacity:   0;
   --sun-opacity:    1;
-  --ground:         #3D0D6B;
-  --road:           #1A0533;
-  --yellow:         #FFE566;
-  --green:          #0FF4FF;
-  --crt-glow:       #FF2D78;
-  --crt-roll-color: rgba(255,45,120,0.15);
-  --crt-tear-color: rgba(0,255,248,0.3);
-  --marquee-color:  #FF2D78;
+  --ground:         #0F1A45;
+  --road:           #090E28;
+  --yellow:         #F5A623;
+  --green:          #00C9B1;
+  --crt-glow:       #E8002D;
+  --crt-roll-color: rgba(232,0,45,0.12);
+  --crt-tear-color: rgba(0,201,177,0.3);
+  --marquee-color:  #E8002D;
 }
- 
+
 [data-theme="dark"] {
-  /* DARK MODE - full synthwave night */
-  --bg-sky:         #0D0221;
-  --bg-sky2:        #150535;
+  /* DARK MODE — Tokyo at midnight, Shinjuku neon district */
+  --bg-sky:         #04051A;
+  --bg-sky2:        #0A0E2E;
   --cloud:          transparent;
-  --city-wall:      #1A0845;
-  --city-wall2:     #0F0530;
-  --city-window:    #0FF4FF;
-  --city-window-lit:#FF2D78;
-  --text-primary:   #FFB3D1;
-  --text-secondary: #BF5FFF;
-  --panel-bg:       rgba(13,2,33,0.93);
-  --panel-border:   #BF5FFF;
-  --panel-header:   #FF2D78;
-  --panel-header-text: #0D0221;
-  --accent:         #0FF4FF;
-  --link-color:     #FF2D78;
+  --city-wall:      #0F1A45;
+  --city-wall2:     #07102B;
+  --city-window:    #00C9B1;
+  --city-window-lit:#F5A623;
+  --text-primary:   #FFB7C5;
+  --text-secondary: #C9B8FF;
+  --panel-bg:       rgba(10,14,46,0.94);
+  --panel-border:   #C9B8FF;
+  --panel-header:   #E8002D;
+  --panel-header-text: #FFF8EE;
+  --accent:         #00C9B1;
+  --link-color:     #FFB7C5;
   --star-opacity:   1;
   --sun-opacity:    0;
-  --ground:         #0A011A;
-  --road:           #06000F;
-  --yellow:         #FFE566;
-  --green:          #0FF4FF;
-  --crt-glow:       #BF5FFF;
-  --crt-roll-color: rgba(191,95,255,0.18);
-  --crt-tear-color: rgba(0,255,248,0.35);
-  --marquee-color:  #BF5FFF;
-  --magenta:        #FF2D78;
+  --ground:         #04051A;
+  --road:           #020310;
+  --yellow:         #F5A623;
+  --green:          #00C9B1;
+  --crt-glow:       #C9B8FF;
+  --crt-roll-color: rgba(201,184,255,0.15);
+  --crt-tear-color: rgba(0,201,177,0.3);
+  --marquee-color:  #00C9B1;
+  --magenta:        #FFB7C5;
 }
 
 /* ===== GLOBAL ===== */
@@ -96,12 +98,12 @@ body {
 .sky-layer {
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, var(--bg-sky) 0%, var(--bg-sky2) 60%, #c8d8e0 100%);
+  background: linear-gradient(180deg, #FF8C69 0%, #C0392B 35%, #7B1FA2 65%, #1B2A6B 100%);
   transition: background 0.8s;
 }
 
 [data-theme="dark"] .sky-layer {
-  background: linear-gradient(180deg, #020208 0%, #0A0A1A 40%, #0D1B2A 100%);
+  background: linear-gradient(180deg, #020310 0%, #04051A 40%, #0A0E2E 100%);
 }
 
 /* Stars */
@@ -121,12 +123,12 @@ body {
 /* Sun */
 .sun {
   position: absolute;
-  top: 60px;
-  right: 140px;
-  width: 48px;
-  height: 48px;
-  background: #FFE000;
-  box-shadow: 0 0 0 8px #FFD700, 0 0 0 16px rgba(255,220,0,0.3);
+  top: 50px;
+  right: 160px;
+  width: 52px;
+  height: 52px;
+  background: #FFDB4D;
+  box-shadow: 0 0 0 8px #FFB300, 0 0 0 20px rgba(255,180,0,0.25);
   image-rendering: pixelated;
   opacity: var(--sun-opacity);
   transition: opacity 0.8s;
@@ -135,8 +137,8 @@ body {
 /* Moon */
 .moon {
   position: absolute;
-  top: 60px;
-  right: 140px;
+  top: 50px;
+  right: 160px;
   width: 40px;
   height: 40px;
   background: #FFFDE0;
@@ -147,7 +149,7 @@ body {
 }
 
 [data-theme="dark"] .moon { opacity: 1; }
-[data-theme="dark"] .sun { opacity: 0; }
+[data-theme="dark"] .sun  { opacity: 0; }
 
 /* Clouds */
 .clouds-layer {
@@ -167,7 +169,7 @@ body {
 
 @keyframes cloudFloat {
   from { transform: translateX(0); }
-  to { transform: translateX(-120vw); }
+  to   { transform: translateX(-120vw); }
 }
 
 /* Ground */
@@ -196,7 +198,7 @@ body {
   position: relative;
   width: 4px;
   height: 80px;
-  background: #333;
+  background: #555;
 }
 
 .lamppost::before {
@@ -206,17 +208,17 @@ body {
   left: -8px;
   width: 20px;
   height: 4px;
-  background: #333;
+  background: #555;
 }
 
 .lamp-light {
   position: absolute;
   top: 4px;
-  left: -12px;
-  width: 28px;
-  height: 28px;
+  left: -14px;
+  width: 32px;
+  height: 32px;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(255,255,100,0.4) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(245,166,35,0.55) 0%, transparent 70%);
   opacity: 0;
   transition: opacity 0.8s;
 }
@@ -240,26 +242,22 @@ body {
   position: absolute;
   top: 50%;
   height: 4px;
-  background: #FFE566;
+  background: #F5A623;
   transform: translateY(-50%);
-  animation: none;
 }
-
-@keyframes roadLines {
-  from { transform: translateY(-50%) translateX(0); }
-  to { transform: translateY(-50%) translateX(-80px); }
-}
-
 
 /* City buildings */
 .city-layer {
   position: absolute;
-  bottom: 120px;
+  bottom: 120px;   /* sits on top of .ground-layer */
   left: 0;
   right: 0;
+  /* Tall enough to show the full Tokyo Tower (340px) without clipping */
+  height: 340px;
   display: flex;
-  align-items: flex-end;
+  align-items: flex-end;   /* all children pin to bottom = touch ground */
   gap: 0;
+  overflow: visible;
 }
 
 .building {
@@ -272,25 +270,28 @@ body {
   position: absolute;
   inset: 8px 6px;
   display: grid;
-  gap: 4px;
+  gap: 3px;
 }
 
 .building .win {
-  width: 6px;
-  height: 8px;
+  width: 5px;
+  height: 7px;
   background: var(--city-window);
-  opacity: 0.3;
+  opacity: 0.25;
   image-rendering: pixelated;
 }
 
 .building .win.lit {
   opacity: 1;
-  animation: winBlink 3s step-end infinite;
 }
 
-@keyframes winBlink {
-  0%, 90%, 100% { opacity: 1; }
-  95% { opacity: 0.1; }
+/* Neon sign strips on buildings */
+.neon-strip {
+  position: absolute;
+  height: 3px;
+  left: 0; right: 0;
+  background: var(--tw-red);
+  opacity: 0.7;
 }
 
 /* Antenna on buildings */
@@ -314,7 +315,17 @@ body {
   background: var(--city-wall);
 }
 
-/* ===== SCANLINES (CRT effect) ===== */
+/* ===== TOKYO TOWER ===== */
+.tokyo-tower {
+  position: relative;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  image-rendering: pixelated;
+}
+
+/* ===== SCANLINES ===== */
 .scanlines {
   position: fixed;
   inset: 0;
@@ -322,12 +333,12 @@ body {
   pointer-events: none;
   background: linear-gradient(
     to bottom,
-    rgba(255, 255, 255, 0),
-    rgba(255, 255, 255, 0) 50%,
-    rgba(0, 0, 0, 0.2) 50%,
-    rgba(0, 0, 0, 0.2)
+    rgba(255,255,255,0),
+    rgba(255,255,255,0) 50%,
+    rgba(0,0,0,0.18) 50%,
+    rgba(0,0,0,0.18)
   );
-  background-size: 100% 4px; /* Semakin besar angkanya, semakin tebal garisnya */
+  background-size: 100% 4px;
 }
 
 /* ===== LAYOUT ===== */
@@ -375,35 +386,29 @@ body {
   image-rendering: pixelated;
 }
 
-.dot-red { background: #FF5F57; }
+.dot-red    { background: #FF5F57; }
 .dot-yellow { background: #FFBD2E; }
-.dot-green { background: #28C840; }
+.dot-green  { background: #28C840; }
 
-.panel-content {
-  padding: 14px 16px;
-}
+.panel-content { padding: 14px 16px; }
 
-/* Update agar maskot di dalam panel tidak berantakan */
 .panel-content #mascot-container {
   flex-shrink: 0;
   margin-top: 5px;
 }
 
-/* Penyesuaian bubble agar tidak melampaui batas panel */
 .panel-content #speech-bubble {
   bottom: 100%;
   left: 0;
   margin-bottom: 5px;
 }
 
-/* Kita gunakan selector yang sangat spesifik agar pasti terbaca */
 .pixel-panel #mascot-container #mascot-img {
-    width: 120px !important; /* Ganti angka ini sesuai keinginanmu */
-    height: auto !important;
-    display: block !important;
+  width: 120px !important;
+  height: auto !important;
+  display: block !important;
 }
 
-/* Responsive: Jika layar kecil, maskot pindah ke atas teks */
 @media (max-width: 680px) {
   .panel-content {
     flex-direction: column !important;
@@ -413,7 +418,7 @@ body {
 
 /* ===== GIF PANEL ===== */
 .gif-container {
-  padding: 10px; /* Sedikit ruang agar GIF tidak langsung menempel ke border dalam */
+  padding: 10px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -423,10 +428,9 @@ body {
   width: 100%;
   max-width: 100%;
   height: auto;
-  border: 2px solid var(--panel-border); /* Memberikan bingkai warna neon di sekitar GIF */
+  border: 2px solid var(--panel-border);
   display: block;
-  /* Hapus atau ubah 'pixelated' jika kamu pakai GIF biasa (bukan pixel art) agar tidak blur/pecah */
-  image-rendering: pixelated; 
+  image-rendering: pixelated;
 }
 
 /* NAVIGATION */
@@ -436,37 +440,26 @@ body {
   flex-wrap: nowrap;
   justify-content: space-between;
   overflow-x: auto;
-  padding: 4px; /* Opsional untuk memberi ruang di dalam panel */
-
-  /* Alternatif menggunakan tinggi minimal */
-  min-height: 50px; 
-  align-items: center; /* Tombol tetap di tengah secara vertikal */
+  min-height: 50px;
+  align-items: center;
   padding: 4px 8px;
 }
 
-/* Mengatur ukuran dan tampilan tombol secara konsisten */
 .nav-link {
   flex: 1;
   text-align: center;
   white-space: nowrap;
   font-size: 11px;
   padding: 6px 2px;
-  text-decoration: none; /* Menghilangkan garis bawah bawaan link */
+  text-decoration: none;
   display: block;
 }
 
-/* Mengatur scrollbar agar terlihat lebih pixel-art/estetik (opsional) */
-.nav-content::-webkit-scrollbar {
-  height: 4px;
-}
-.nav-content::-webkit-scrollbar-thumb {
-  background-color: #888;
-}
+.nav-content::-webkit-scrollbar { height: 4px; }
+.nav-content::-webkit-scrollbar-thumb { background-color: #888; }
 
 /* ===== HEADER ===== */
-#header-panel {
-  display: block;
-}
+#header-panel { display: block; }
 
 #header-panel .panel-content {
   display: flex;
@@ -475,10 +468,7 @@ body {
 }
 
 /* PFP */
-.pfp-wrap {
-  position: relative;
-  flex-shrink: 0;
-}
+.pfp-wrap { position: relative; flex-shrink: 0; }
 
 .pfp-frame {
   width: 150px;
@@ -513,9 +503,7 @@ body {
   border: 2px solid #000;
 }
 
-.profile-info {
-  flex: 1;
-}
+.profile-info { flex: 1; }
 
 .profile-name {
   font-family: 'Press Start 2P', monospace;
@@ -575,7 +563,7 @@ body {
   gap: 16px;
 }
 
-.sidebar { display: flex; flex-direction: column; gap: 16px; }
+.sidebar  { display: flex; flex-direction: column; gap: 16px; }
 .main-col { display: flex; flex-direction: column; gap: 16px; }
 
 /* ===== DARK MODE TOGGLE ===== */
@@ -633,7 +621,7 @@ body {
 .social-list a:hover {
   border-color: var(--link-color);
   color: var(--link-color);
-  background: rgba(255,0,255,0.08);
+  background: rgba(232,0,45,0.07);
   padding-left: 14px;
 }
 
@@ -681,9 +669,7 @@ body {
   image-rendering: pixelated;
 }
 
-[data-theme="dark"] .tag {
-  color: #0A0A1A;
-}
+[data-theme="dark"] .tag { color: #04051A; }
 
 /* ===== PLAYLIST ===== */
 .playlist-grid {
@@ -711,8 +697,8 @@ body {
 }
 
 .playlist-card:hover {
-  border-color: var(--magenta);
-  box-shadow: 3px 3px 0 var(--magenta);
+  border-color: var(--tw-red);
+  box-shadow: 3px 3px 0 var(--tw-red);
   transform: translate(-2px, -2px);
 }
 
@@ -721,7 +707,7 @@ body {
 .pl-num {
   font-family: 'Press Start 2P', monospace;
   font-size: 7px;
-  color: var(--magenta);
+  color: var(--tw-red);
   margin-bottom: 6px;
   letter-spacing: 2px;
 }
@@ -743,8 +729,8 @@ body {
 .pl-play-btn {
   display: inline-block;
   margin-top: 8px;
-  background: var(--magenta);
-  color: #000;
+  background: var(--tw-red);
+  color: #FFF8EE;
   font-family: 'Press Start 2P', monospace;
   font-size: 6px;
   padding: 4px 8px;
@@ -756,16 +742,14 @@ body {
 #modal-overlay {
   position: fixed;
   inset: 0;
-  background: rgba(0,0,0,0.75);
+  background: rgba(0,0,0,0.78);
   z-index: 1000;
   display: none;
   align-items: center;
   justify-content: center;
 }
 
-#modal-overlay.active {
-  display: flex;
-}
+#modal-overlay.active { display: flex; }
 
 #modal-window {
   background: var(--panel-bg);
@@ -779,12 +763,10 @@ body {
 
 @keyframes modalPop {
   from { transform: scale(0.8); opacity: 0; }
-  to { transform: scale(1); opacity: 1; }
+  to   { transform: scale(1);   opacity: 1; }
 }
 
-#modal-window .panel-title-bar {
-  cursor: move;
-}
+#modal-window .panel-title-bar { cursor: move; }
 
 #modal-close {
   background: #FF5F57;
@@ -803,9 +785,7 @@ body {
 
 #modal-content { padding: 16px; }
 
-#modal-playlist-info {
-  margin-bottom: 12px;
-}
+#modal-playlist-info { margin-bottom: 12px; }
 
 #modal-pl-title {
   font-family: 'Press Start 2P', monospace;
@@ -827,11 +807,7 @@ body {
   margin-bottom: 10px;
 }
 
-#modal-embed {
-  width: 100%;
-  border: none;
-  overflow: hidden;
-}
+#modal-embed { width: 100%; border: none; overflow: hidden; }
 
 #modal-embed iframe {
   width: 100%;
@@ -840,7 +816,7 @@ body {
   display: block;
 }
 
-/* ===== VISITOR COUNTER / STATUS ===== */
+/* ===== STATUS BAR ===== */
 .status-bar {
   display: flex;
   align-items: center;
@@ -860,9 +836,7 @@ body {
   image-rendering: pixelated;
 }
 
-@keyframes blink {
-  50% { opacity: 0; }
-}
+@keyframes blink { 50% { opacity: 0; } }
 
 .marquee-wrap {
   overflow: hidden;
@@ -882,7 +856,7 @@ body {
 
 @keyframes marqueeScroll {
   from { transform: translateX(0); }
-  to { transform: translateX(-100%); }
+  to   { transform: translateX(-100%); }
 }
 
 /* ===== GLITCH TEXT ===== */
@@ -900,7 +874,7 @@ body {
 }
 
 .glitch::before {
-  color: var(--magenta);
+  color: var(--tw-red);
   animation: glitch1 4s infinite;
   clip-path: polygon(0 30%, 100% 30%, 100% 50%, 0 50%);
 }
@@ -912,16 +886,16 @@ body {
 }
 
 @keyframes glitch1 {
-  0%, 90%, 100% { transform: none; opacity: 0; }
-  92% { transform: translate(-3px, 0); opacity: 0.8; }
-  94% { transform: translate(3px, 0); opacity: 0.8; }
+  0%,90%,100% { transform: none; opacity: 0; }
+  92% { transform: translate(-3px,0); opacity: 0.8; }
+  94% { transform: translate(3px,0);  opacity: 0.8; }
   96% { transform: none; opacity: 0; }
 }
 
 @keyframes glitch2 {
-  0%, 93%, 100% { transform: none; opacity: 0; }
-  95% { transform: translate(3px, 0); opacity: 0.8; }
-  97% { transform: translate(-3px, 0); opacity: 0.8; }
+  0%,93%,100% { transform: none; opacity: 0; }
+  95% { transform: translate(3px,0);  opacity: 0.8; }
+  97% { transform: translate(-3px,0); opacity: 0.8; }
   99% { transform: none; opacity: 0; }
 }
 
@@ -945,11 +919,9 @@ body {
   box-shadow: 1px 1px 0 var(--panel-border);
 }
 
-[data-theme="dark"] .pixel-btn {
-  color: #0A0A1A;
-}
+[data-theme="dark"] .pixel-btn { color: #04051A; }
 
-/* ===== MASCOT STYLES ===== */
+/* ===== MASCOT ===== */
 #mascot-container {
   position: fixed;
   bottom: 20px;
@@ -961,10 +933,10 @@ body {
 }
 
 #mascot-img {
-  width: 120px; /* Ubah ukuran maskot di sini */
+  width: 120px;
   height: auto;
   cursor: pointer;
-  image-rendering: pixelated; /* Menjaga gambar 8-bit tetap tajam */
+  image-rendering: pixelated;
   transition: transform 0.2s ease-in-out;
 }
 
@@ -972,10 +944,10 @@ body {
   opacity: 0;
   visibility: hidden;
   background-color: #ffffff;
-  color: #00F5FF;
-  border: 2px solid #FF2BD6;
+  color: #E8002D;
+  border: 2px solid #1B2A6B;
   padding: 8px 12px;
-  border-radius: 0; /* Sengaja dibuat kotak agar terasa retro */
+  border-radius: 0;
   font-family: 'Press Start 2P', monospace;
   font-size: 10px;
   margin-bottom: 10px;
@@ -986,7 +958,6 @@ body {
   transition: opacity 0.2s, visibility 0.2s;
 }
 
-/* Membuat segitiga kecil di bawah speech bubble */
 #speech-bubble::after {
   content: '';
   position: absolute;
@@ -995,23 +966,22 @@ body {
   margin-left: -6px;
   border-width: 6px;
   border-style: solid;
-  border-color: #FF2BD6 transparent transparent transparent;
+  border-color: #1B2A6B transparent transparent transparent;
 }
 
-/* Class untuk memunculkan teks */
 #speech-bubble.show {
   opacity: 1;
   visibility: visible;
 }
 
-/* Mode Gelap (Opsional, sesuaikan dengan variabel dark mode-mu jika ada) */
 [data-theme="dark"] #speech-bubble {
-  background-color: rgba(15, 0, 35, 0.92);
-  color: #00F5FF; /* Warna teks ala terminal */
-  border-color: #FF2BD6;
+  background-color: rgba(10,14,46,0.95);
+  color: #00C9B1;
+  border-color: #FFB7C5;
 }
+
 [data-theme="dark"] #speech-bubble::after {
-  border-color: #FF2BD6 transparent transparent transparent;
+  border-color: #FFB7C5 transparent transparent transparent;
 }
 
 /* ===== FOOTER ===== */
@@ -1029,18 +999,16 @@ footer a { color: var(--link-color); text-decoration: none; }
 /* ===== RESPONSIVE ===== */
 @media (max-width: 680px) {
   .main-grid { grid-template-columns: 1fr; }
-  
-  /* Susun foto dan info ke bawah, dan posisikan di tengah */
-  #header-panel .panel-content { 
-    flex-direction: column; 
+
+  #header-panel .panel-content {
+    flex-direction: column;
     text-align: center;
     gap: 12px;
   }
-  
+
   .playlist-grid { grid-template-columns: 1fr; }
-  .profile-name { font-size: 14px; } /* Dibesarkan sedikit agar mudah dibaca */
-  
-  /* Rapikan stat (Mood, Status, Lvl) yang bertabrakan */
+  .profile-name  { font-size: 14px; }
+
   .profile-stats {
     justify-content: center;
     flex-wrap: wrap;
