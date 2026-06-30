@@ -603,6 +603,7 @@ body {
   display: flex;
   flex-direction: column;
   gap: 8px;
+  text-transform: lowercase;
 }
 
 .social-list a {
