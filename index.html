@@ -1,0 +1,606 @@
+<!doctype html>
+<html lang="id" data-theme="light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>IKY.EXE</title>
+    <link rel="icon" href="IMG/PFP/mioooo_3.jpeg" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323:wght@400&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <!-- ===== CITY BACKGROUND ===== -->
+    <div id="city-bg">
+      <div class="sky-layer"></div>
+      <div class="stars-layer" id="stars"></div>
+      <div class="sun"></div>
+      <div class="moon"></div>
+      <div class="clouds-layer" id="clouds"></div>
+      <div class="city-layer" id="city"></div>
+      <div class="ground-layer">
+        <div class="road">
+          <div id="lampposts"></div>
+
+          <div class="road-line" style="width: 60px; left: 5%"></div>
+          <div
+            class="road-line"
+            style="width: 60px; left: 25%; animation-delay: -0.5s"
+          ></div>
+          <div
+            class="road-line"
+            style="width: 60px; left: 45%; animation-delay: -1s"
+          ></div>
+          <div
+            class="road-line"
+            style="width: 60px; left: 65%; animation-delay: -0.3s"
+          ></div>
+          <div
+            class="road-line"
+            style="width: 60px; left: 85%; animation-delay: -0.8s"
+          ></div>
+        </div>
+      </div>
+    </div>
+    <div class="scanlines"></div>
+    <div class="crt-overlay"></div>
+    <div class="crt-glitch-overlay"></div>
+
+    <!-- ===== THEME TOGGLE ===== -->
+    <div id="theme-toggle-wrap">
+      <button id="theme-toggle">
+        <span class="toggle-icon" id="toggle-icon">☀️</span>
+        <span id="toggle-label">LIGHT MODE</span>
+      </button>
+    </div>
+
+    <!-- ===== PAGE CONTENT ===== -->
+    <div id="page-wrap">
+      <!-- MARQUEE -->
+      <div class="marquee-wrap" style="margin-bottom: 12px">
+        <div class="marquee-inner">
+          ★ WELCOME TO MY PAGE ★ &nbsp;&nbsp;&nbsp; // SYSTEM ONLINE ✓
+          &nbsp;&nbsp;&nbsp; ★ DO NOT CTRL+C MY VIBES ★ &nbsp;&nbsp;&nbsp; //
+          LOADING... [██████████] 100% &nbsp;&nbsp;&nbsp; ★ YOU ARE VISITOR #00∞
+          ★ &nbsp;&nbsp;&nbsp; // KAWAII.EXE RUNNING &nbsp;&nbsp;&nbsp;
+        </div>
+      </div>  
+      
+      <!-- NAVIGATION PANEL -->
+<div class="pixel-panel nav-panel" id="nav-panel">
+  <div class="panel-title-bar">
+    <span>NAV.EXE</span>
+    <div class="title-bar-dots">
+      <div class="title-bar-dot dot-red"></div>
+      <div class="title-bar-dot dot-yellow"></div>
+      <div class="title-bar-dot dot-green"></div>
+    </div>
+  </div>
+  
+  <div class="nav-content">
+    <a href="#page-wrap" class="pixel-btn nav-link">HOME</a>
+    <a href="#header-panel" class="pixel-btn nav-link">ABOUT</a>
+    <a href="#fav-games-section" class="pixel-btn nav-link">GAMES</a>
+    <a href="#playlist-section" class="pixel-btn nav-link">PLAYLIST</a>
+  </div>
+</div>
+
+      <!-- PROFILE HEADER -->
+      <div class="pixel-panel" id="header-panel">
+        <div class="panel-title-bar">
+          <span>PROFILE.EXE</span>
+          <div class="title-bar-dots">
+            <div class="title-bar-dot dot-red"></div>
+            <div class="title-bar-dot dot-yellow"></div>
+            <div class="title-bar-dot dot-green"></div>
+          </div>
+        </div>
+        <div class="panel-content">
+          <!-- PFP — ganti src dengan URL foto kamu -->
+          <div class="pfp-wrap">
+            <div class="pfp-frame">
+              <!-- Ganti URL di bawah dengan pfp-mu, atau hapus tag img untuk pakai emoji default -->
+              <img
+                src="IMG/PFP/mioooo_3.jpeg"
+                alt="Profile Picture"
+                id="pfp-img"
+                onerror="
+                  this.style.display = 'none';
+                  this.parentElement.textContent = '🎮';
+                "
+              />
+            </div>
+            <div class="pfp-badge">ONLINE</div>
+          </div>
+          <div class="profile-info">
+            <div class="profile-name glitch" data-text="[YOUR NAME]">[IKY]</div>
+            <div class="profile-handle">@IkyDesu_</div>
+            <div class="profile-bio">
+              otaku for live (～￣▽￣)～
+            </div>
+            <div class="profile-stats">
+              <div class="stat-item">
+                MOOD: <span id="current-mood">( ˶ˆᗜˆ˵ )</span>
+              </div>
+              <div class="stat-item">STATUS: <span>✦ CAFFEINATED</span></div>
+              <div class="stat-item">LVL: <span>99</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- MAIN LAYOUT -->
+      <div class="main-grid">
+        <!-- SIDEBAR -->
+        <div class="sidebar">
+          <!-- STATUS / INTERESTS -->
+          <div class="pixel-panel">
+            <div class="panel-title-bar">
+              <span>INTERESTS.TXT</span>
+              <div class="title-bar-dots">
+                <div class="title-bar-dot dot-red"></div>
+                <div class="title-bar-dot dot-yellow"></div>
+                <div class="title-bar-dot dot-green"></div>
+              </div>
+            </div>
+            <div class="panel-content">
+              <div class="tags">
+                <span class="tag">ANIME</span>
+                <span class="tag">GAMING</span>
+                <span class="tag">MUSIC</span>
+              </div>
+            </div>
+          </div>
+
+           <!-- STATUS BOX -->
+          <div class="pixel-panel">
+            <div class="panel-title-bar">
+              <span>SYSTEM.LOG</span>
+              <div class="title-bar-dots">
+                <div class="title-bar-dot dot-red"></div>
+                <div class="title-bar-dot dot-yellow"></div>
+                <div class="title-bar-dot dot-green"></div>
+              </div>
+            </div>
+            <div class="panel-content">
+              <div class="status-bar">
+                <div><span class="status-dot"></span> &nbsp;ONLINE</div>
+              </div>
+              <hr class="pixel-divider" style="margin-top: 10px" />
+
+              <!-- ===== PROFILE SONG WIDGET ===== -->
+              <div style="font-size: 15px; color: var(--text-secondary); margin-bottom: 8px;">
+                &gt; my current anthem:
+              </div>
+              <div class="profile-song" id="profile-song">
+                <button
+                  class="song-play-btn"
+                  id="song-play-btn"
+                  onclick="toggleProfileSong()"
+                  aria-label="Play profile song"
+                >
+                  <span id="song-play-icon">▶</span>
+                </button>
+
+                <div class="song-body">
+                  <div class="song-title-row">
+                    <span class="song-title" id="song-title">EXECUTE.mp3</span>
+                    <div class="song-eq" id="song-eq">
+                      <span></span><span></span><span></span><span></span>
+                    </div>
+                  </div>
+                  <div class="song-artist" id="song-artist"></div>
+
+                  <div
+                    class="song-progress-track"
+                    id="song-progress-track"
+                    onclick="seekProfileSong(event)"
+                  >
+                    <div class="song-progress-fill" id="song-progress-fill"></div>
+                  </div>
+
+                  <div class="song-time-row">
+                    <span id="song-current-time">0:00</span>
+                    <span id="song-duration">0:00</span>
+                  </div>
+                </div>
+              </div>
+
+              <!--
+                GANTI src di bawah dengan file/URL lagu kamu sendiri
+                (mp3/ogg/wav). Bisa file lokal di folder IMG/audio/
+                atau link langsung ke file audio.
+              -->
+              <audio
+                id="profile-audio"
+                src="SONG/porter robinson - shelter.mp3"
+                preload="metadata"
+              ></audio>
+            </div>
+          </div>
+
+          <!-- SOCIAL LINKS -->
+          <div class="pixel-panel">
+            <div class="panel-title-bar">
+              <span>CONNECT.EXE</span>
+              <div class="title-bar-dots">
+                <div class="title-bar-dot dot-red"></div>
+                <div class="title-bar-dot dot-yellow"></div>
+                <div class="title-bar-dot dot-green"></div>
+              </div>
+            </div>
+            <div class="panel-content">
+              <ul class="social-list">
+                <li>
+                  <a
+                    href="https://twitter.com/Asuna9005"
+                    target="_blank"
+                    rel="noopener"
+                  >
+                    <span class="social-icon">𝕏</span>
+                    twitter
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="https://instagram.com/ikydesu_"
+                    target="_blank"
+                    rel="noopener"
+                  >
+                    <span class="social-icon">📸</span>
+                    instagram
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="https://bsky.app/profile/iky9005.bsky.social"
+                    target="_blank"
+                    rel="noopener"
+                  >
+                    <span class="social-icon">☁️</span>
+                    bluesky
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- GIF BOX -->
+          <div class="pixel-panel">
+            <div class="panel-title-bar">
+              <span>VISUAL.EXE</span>
+              <div class="title-bar-dots">
+                <div class="title-bar-dot dot-red"></div>
+                <div class="title-bar-dot dot-yellow"></div>
+                <div class="title-bar-dot dot-green"></div>
+              </div>
+            </div>
+            <div class="panel-content gif-container">
+              <!-- Ganti URL di bawah dengan link GIF milikmu -->
+              <img
+                src="IMG/gif/school.gif"
+                alt="Pixel Art GIF"
+                class="panel-gif"
+              />
+            </div>
+          </div>
+        </div>
+
+        <!-- MAIN COLUMN -->
+        <div class="main-col">
+          <!-- ABOUT ME -->
+          <div class="pixel-panel">
+            <div class="panel-title-bar">
+              <span>ABOUT_ME.TXT</span>
+              <div class="title-bar-dots"> 
+                <div class="title-bar-dot dot-red"></div>
+                <div class="title-bar-dot dot-yellow"></div>
+                <div class="title-bar-dot dot-green"></div>
+              </div>
+            </div>
+            <div
+              class="panel-content"
+              style="display: flex; gap: 15px; align-items: flex-start"
+            >
+              <div
+                id="mascot-container"
+                style="position: relative; bottom: auto; right: auto"
+              >
+                <div id="speech-bubble">hey bestie.</div>
+                <img
+                  id="mascot-img"
+                  src="IMG/gif/madoka.gif"
+                  alt="Mascot"
+                  style="width: 80px"
+                />
+              </div>
+
+              <div class="about-text">
+                <p>
+                  hey, welcome to my little corner of the internet ヾ(⌐■_■)ノ♪
+                </p>
+                <p>
+                  i'm just a tiny pixel of this world who codes by day and being
+                  an otaku at night. this page is basically my digital bedroom.
+                </p>
+                <hr class="pixel-divider" />
+                <p>
+                  if you've found this page, you're either a lost internet
+                  traveler or you actually care enough to stalk me. also don't
+                  touch my laptop. (⌐■_■)
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- 5 GAMES 2 KNOW ME -->
+          <div class="pixel-panel" id="fav-games-section">
+            <div class="panel-title-bar">
+              <span>FAV_GAMES.EXE</span>
+              <div class="title-bar-dots">
+                <div class="title-bar-dot dot-red"></div>
+                <div class="title-bar-dot dot-yellow"></div>
+                <div class="title-bar-dot dot-green"></div>
+              </div>
+            </div>
+            <div class="panel-content">
+              <ul class="social-list">
+                <li>
+                  <a
+                    href="https://store.steampowered.com/app/367520/Hollow_Knight/"
+                    target="_blank"
+                    rel="noopener"
+                  >
+                    <span class="social-icon">🪲</span> Hollow Knight
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="https://www.minecraft.net/"
+                    target="_blank"
+                    rel="noopener"
+                  >
+                    <span class="social-icon">⛏️</span> Minecraft
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="https://store.steampowered.com/app/17470/Dead_Space_2008/"
+                    target="_blank"
+                    rel="noopener"
+                  >
+                    <span class="social-icon">🚀</span> Dead Space (2008)
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="https://store.steampowered.com/app/632360/Risk_of_Rain_2/"
+                    target="_blank"
+                    rel="noopener"
+                  >
+                    <span class="social-icon">⛈️</span> Risk of Rain 2
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="https://store.steampowered.com/app/257850/Hyper_Light_Drifter/"
+                    target="_blank"
+                    rel="noopener"
+                  >
+                    <span class="social-icon">💠</span> Hyper Light Drifter 
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- TRACKS -->
+          <div class="pixel-panel">
+            <div class="panel-title-bar">
+              <span>FAV_ARTIST.EXE</span>
+              <div class="title-bar-dots">
+                <div class="title-bar-dot dot-red"></div>
+                <div class="title-bar-dot dot-yellow"></div>
+                <div class="title-bar-dot dot-green"></div>
+              </div>
+            </div>
+            <div class="panel-content">
+              <ul class="social-list">
+                <li>
+                  <a
+                    href="https://www.youtube.com/@porterrobinson"
+                    target="_blank"
+                    rel="noopener"
+                  >
+                    <span class="social-icon">🌐</span> porter robinson
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="https://www.youtube.com/@itsmadeon"
+                    target="_blank"
+                    rel="noopener"
+                  >
+                    <span class="social-icon">🕹️</span> madeon
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="https://www.youtube.com/@LinkinPark"
+                    target="_blank"
+                    rel="noopener"
+                  >
+                    <span class="social-icon">🖤</span> linkin park
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="https://www.youtube.com/@BringMeTheHorizon"
+                    target="_blank"
+                    rel="noopener"
+                  >
+                    <span class="social-icon">💀</span> bring me the horizon
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="https://www.youtube.com/@ONEOKROCK"
+                    target="_blank"
+                    rel="noopener"
+                  >
+                    <span class="social-icon">⛩️</span> one ok rock
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- PLAYLIST -->
+          <div class="pixel-panel" id="playlist-section">
+            <div class="panel-title-bar">
+              <span>PLAYLIST.DB — click to stream</span>
+              <div class="title-bar-dots">
+                <div class="title-bar-dot dot-red"></div>
+                <div class="title-bar-dot dot-yellow"></div>
+                <div class="title-bar-dot dot-green"></div>
+              </div>
+            </div>
+            <div class="panel-content">
+              <div class="playlist-grid" id="playlist-grid">
+                <!-- Playlist 1 -->
+                <div
+                  class="playlist-card"
+                  onclick="
+                    openPlaylist(
+                      '01',
+                      'UPLOAD',
+                      'Pop',
+                      'data released.',
+                      'https://open.spotify.com/embed/playlist/3vXSleEPoPmZd86xJ1IpUj',
+                    )
+                  "
+                >
+                  <div class="pl-num">// PL-01</div>
+                  <div class="pl-title">UPLOAD</div>
+                  <div class="pl-desc">data released.</div>
+                  <div class="pl-play-btn">▶ PLAY</div>
+                </div>
+                <!-- Playlist 2 -->
+                <div
+                  class="playlist-card"
+                  onclick="
+                    openPlaylist(
+                      '02',
+                      'COMPILE',
+                      'J-Pop / J-Rock',
+                      'code assembled.',
+                      'https://open.spotify.com/embed/playlist/5riPAnv9pNJxRVUwlstLMn',
+                    )
+                  "
+                >
+                  <div class="pl-num">// PL-02</div>
+                  <div class="pl-title">COMPILE</div>
+                  <div class="pl-desc">code assembled.</div>
+                  <div class="pl-play-btn">▶ PLAY</div>
+                </div>
+
+                <!-- Playlist 3 -->
+                <div
+                  class="playlist-card"
+                  onclick="
+                    openPlaylist(
+                      '03',
+                      'EXECUTE',
+                      'Rock',
+                      'command issued.',
+                      'https://open.spotify.com/embed/playlist/5LoPsc58H9G8NJwoQZ93dK',
+                    )
+                  "
+                >
+                  <div class="pl-num">// PL-03</div>
+                  <div class="pl-title">EXECUTE</div>
+                  <div class="pl-desc">command issued.</div>
+                  <div class="pl-play-btn">▶ PLAY</div>
+                </div>
+
+                <!-- Playlist 4 -->
+                <div
+                  class="playlist-card"
+                  onclick="
+                    openPlaylist(
+                      '04',
+                      'OVERRIDE',
+                      'Metal',
+                      'kernel panic.',
+                      'https://open.spotify.com/embed/playlist/2alBtdff4u7EAIho0mrGEI',
+                    )
+                  "
+                >
+                  <div class="pl-num">// PL-04</div>
+                  <div class="pl-title">OVERRIDE</div>
+                  <div class="pl-desc">kernel panic.</div>
+                  <div class="pl-play-btn">▶ PLAY</div>
+                </div>
+              </div>
+              <div
+                style="
+                  margin-top: 12px;
+                  font-family: &quot;Press Start 2P&quot;, monospace;
+                  font-size: 7px;
+                  color: var(--text-secondary);
+                "
+              >
+                ⚠ Some songs may be added or removed over time, so stay tuned.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- FOOTER -->
+      <footer>
+        <div style="margin-bottom: 8px">
+          ✦ — made with ♥ and too much redbull — ✦
+        </div>
+        <div>· best viewed at 1024x768 ·</div>
+      </footer>
+    </div>
+    <!-- end page-wrap -->
+
+    <!-- ===== POPUP MODAL ===== -->
+    <div id="modal-overlay">
+      <div id="modal-window">
+        <div class="panel-title-bar" id="modal-title-bar">
+          <span id="modal-title-text">🎵 NOW PLAYING</span>
+          <div class="title-bar-dots" style="margin-left: auto">
+            <button id="modal-close" onclick="closeModal()">✕</button>
+          </div>
+        </div>
+        <div id="modal-content">
+          <div id="modal-playlist-info">
+            <div id="modal-pl-title"></div>
+            <div id="modal-pl-desc"></div>
+          </div>
+          <div id="modal-embed">
+            <iframe
+              id="spotify-iframe"
+              allow="
+                autoplay;
+                clipboard-write;
+                encrypted-media;
+                fullscreen;
+                picture-in-picture;
+              "
+              loading="lazy"
+              allowfullscreen
+            ></iframe>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
