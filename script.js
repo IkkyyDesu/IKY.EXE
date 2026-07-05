@@ -460,7 +460,6 @@ function initProfileSong() {
   const fill = document.getElementById('song-progress-fill');
   const track = document.getElementById('song-progress-track');
   const curTimeEl = document.getElementById('song-current-time');
-  const durEl = document.getElementById('song-duration');
   const titleEl = document.getElementById('song-title');
   const artistEl = document.getElementById('song-artist');
 
@@ -489,10 +488,6 @@ function initProfileSong() {
     .catch(() => {
       /* diamkan saja — fallback nama file di atas tetap dipakai */
     });
-
-  audio.addEventListener('loadedmetadata', () => {
-    durEl.textContent = formatTime(audio.duration);
-  });
 
   audio.addEventListener('timeupdate', () => {
     if (audio.duration) {
