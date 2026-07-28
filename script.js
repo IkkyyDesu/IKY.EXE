@@ -226,7 +226,7 @@ function buildStars() {
 /* ===== CLOUDS BUILDER ===== */
 function buildClouds() {
   const cloudsEl = document.getElementById('clouds');
-  for (let i = 0; i < 6; i++) {
+  for (let i = 0; i < 20; i++) {
     const cloud = document.createElement('div');
     cloud.className = 'cloud';
     const w = 80 + Math.random() * 120;
@@ -235,7 +235,7 @@ function buildClouds() {
       width:${w}px; height:${h}px;
       top:${5 + Math.random() * 28}%;
       left:${100 + Math.random() * 100}%;
-      animation-duration: ${38 + Math.random() * 28}s;
+      animation-duration: ${38 + Math.random() * 60}s;
       animation-delay: ${-(Math.random() * 45)}s;
       border-radius: 0;
       box-shadow:
