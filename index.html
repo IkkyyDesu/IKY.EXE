@@ -77,8 +77,31 @@
       <p id="empty" class="empty" hidden>No disc found. Drop an .mp3 into <b>SONG/</b> and set <b>data-src</b> on this section in index.html.</p>
     </section>
 
+    <!-- PLAYER STATS (character sheet) - every value on this card is set in script.js, in the STATS block at the top -->
+    <section class="win wide stats" id="charSheet">
+      <h2>player stats</h2>
+      <div class="cs-head">
+        <div class="lv"><small>LV</small><b id="csLevel">22</b></div>
+        <div class="cs-id"><h3 id="csName">IKY</h3><p id="csClass"></p></div>
+      </div>
+      <div class="cs-grid">
+        <div class="cs-col">
+          <p class="cs-sub">Vitals</p>
+          <ul class="rpgbars" id="csBars"></ul>
+          <p class="cs-sub">Attributes</p>
+          <ul class="attrs" id="csAttrs"></ul>
+        </div>
+        <div class="cs-col">
+          <p class="cs-sub">Equipment</p>
+          <dl class="gear" id="csGear"></dl>
+          <p class="cs-sub">Active effects</p>
+          <ul class="buffs" id="csBuffs"></ul>
+        </div>
+      </div>
+    </section>
+
     <!-- SOCIAL -->
-    <section class="win wide strip">
+    <section class="win strip">
       <h2>save points</h2>
       <div class="frames" id="frames">
         <a href="https://x.com/Asuna9005">
@@ -93,20 +116,10 @@
       </div>
     </section>
 
-    <!-- FAVORITE ALBUMS + FAVORITES -->
+    <!-- FAVORITE ALBUMS -->
     <section id="albums" class="win albums">
       <h2>albums on repeat</h2>
       <ul class="fl" id="albumList"></ul>
-    </section>
-    <section class="win favs">
-      <h2>player stats</h2>
-      <dl>
-        <dt>Ambience</dt><dd>rain on the window, like a quiet cutscene</dd>
-        <dt>Hour</dt><dd>the one right after sunset, when the credits feel close</dd>
-        <dt>Snack</dt><dd>konbini melon bread, eaten between boss fights</dd>
-        <dt>Flower</dt><dd>cherry blossom, obviously: the prettiest thing that never lasts</dd>
-        <dt>BGM</dt><dd>the hush right before the title screen music</dd>
-      </dl>
     </section>
 
     <!-- SPOTIFY PLAYLISTS -->

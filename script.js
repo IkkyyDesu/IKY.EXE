@@ -33,6 +33,32 @@
     { title: 'OVERRIDE', note: '', url: 'https://open.spotify.com/playlist/2alBtdff4u7EAIho0mrGEI', cover: 'IMG/PLAYLIST/WANE.jpeg'}
   ];
 
+  /* Your character sheet ("player stats"). Everything on that card comes from this block.
+       name / cls / title = the text next to the LV badge      level = the number in the badge
+       bars  = vitals. `max` is the full value, `color` is hp, mp or xp (bar colour).
+               `now` is either one number, or { dawn, dusk, midnight } so the bar changes
+               when someone presses the Day-night cycle buttons. Under 30% an HP-style bar blinks.
+       attrs = [name, 0-10]. Each point lights up one of the 10 segments (10 shows MAX).
+       gear  = [label, text, one-character icon]. Your old "favorites" list lives here now.
+       buffs = small tags. Start with "+" for a buff (green) or "-" for a debuff (red). */
+  const STATS = {
+    name: 'IKY', cls: 'Otaku Bard', title: 'Keeper of Unfinished Quests', level: 22,
+    bars: [
+      { key: 'HP', label: 'Health',               color: 'hp', max: 100, now: { dawn: 78, dusk: 64, midnight: 21 } },
+      { key: 'MP', label: 'Mana (anime reserves)', color: 'mp', max: 100, now: { dawn: 52, dusk: 80, midnight: 100 } },
+      { key: 'XP', label: 'Next level',           color: 'xp', max: 100, now: 73 }
+    ],
+    attrs: [['Melancholy', 9], ['Otaku', 10], ['Night Owl', 9], ['Nostalgia', 8], ['Backlog', 10], ['Sleep', 2]],
+    gear: [
+      ['Aura',       'rain on the window, like a quiet cutscene', '\u2602'],
+      ['Peak hour',  'the one right after sunset, when the credits feel close', '\u263E'],
+      ['Consumable', 'konbini melon bread, eaten between boss fights', '\u25D5'],
+      ['Accessory',  'cherry blossom, obviously: the prettiest thing that never lasts', '\u273F'],
+      ['BGM',        'the hush right before the title screen music', '\u266A']
+    ],
+    buffs: ['+ Headphones On', '+ Sakura Aura', '- 3 a.m. Thoughts', '- One More Episode']
+  };
+
   const $ = s => document.querySelector(s);
   const $$ = s => [...document.querySelectorAll(s)];
   const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -70,6 +96,40 @@
   }
   if (!reduce) for (let i = 0; i < (innerWidth < 700 ? 9 : 16); i++) makePetal();
 
+  /* ---------- player stats (character sheet) ---------- */
+  const cs = $('#charSheet'), csBars = [];
+  $('#csLevel').textContent = STATS.level;
+  $('#csName').textContent = STATS.name;
+  $('#csClass').textContent = STATS.cls + ' \u00B7 ' + STATS.title;
+  STATS.bars.forEach(b => {
+    const li = mk('li', 'bar ' + b.color), top = mk('div', 'bar-top'), val = mk('span', 'bar-val');
+    const track = mk('div', 'track'), fill = mk('i', 'fill');
+    top.append(mk('b', '', b.key), mk('span', 'bar-lbl', b.label), val);
+    track.append(fill); li.append(top, track); $('#csBars').append(li);
+    csBars.push({ b, li, fill, val });
+  });
+  STATS.attrs.forEach(([name, n]) => {
+    n = Math.max(0, Math.min(10, n));
+    const li = mk('li', n === 10 ? 'max' : ''), seg = mk('span', 'seg');
+    for (let i = 0; i < 10; i++) { const k = mk('i', i < n ? 'on' : ''); k.style.setProperty('--i', i); seg.append(k); }
+    li.append(mk('span', '', name), seg, mk('em', '', n === 10 ? 'MAX' : n + '/10'));
+    $('#csAttrs').append(li);
+  });
+  STATS.gear.forEach(([label, text, icon]) => {
+    const row = mk('div'); row.dataset.g = icon;
+    row.append(mk('dt', '', label), mk('dd', '', text)); $('#csGear').append(row);
+  });
+  STATS.buffs.forEach(t => $('#csBuffs').append(mk('li', /^[-\u2212]/.test(t.trim()) ? 'deb' : 'buf', t)));
+  function paintStats(m) { /* called on load and whenever the Day-night cycle changes */
+    csBars.forEach(({ b, li, fill, val }) => {
+      const now = typeof b.now === 'object' ? (b.now[m] ?? b.now.dusk) : b.now;
+      const pct = Math.max(0, Math.min(100, now / b.max * 100));
+      fill.style.setProperty('--v', pct); val.textContent = now + ' / ' + b.max;
+      li.classList.toggle('low', pct < 30);
+    });
+  }
+  new IntersectionObserver((es, o) => es.forEach(e => { if (e.isIntersecting) { cs.classList.add('in'); o.disconnect(); } }), { threshold: 0.2 }).observe(cs);
+
   /* ---------- profile: clock, visits, mood ---------- */
   const clock = $('#clock');
   const tick = () => { clock.textContent = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }); };
@@ -82,6 +142,7 @@
     $('#statusText').textContent = statuses[m];
     $$('.moods button').forEach(b => b.classList.toggle('on', b.dataset.mood === m));
     store.set('wod-mood', m);
+    paintStats(m);
   }
   $$('.moods button').forEach(b => b.addEventListener('click', () => setMood(b.dataset.mood)));
   setMood(store.get('wod-mood', 'dusk'));
