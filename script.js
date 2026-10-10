@@ -21,7 +21,7 @@
     { title: 'Modern Life is Lonely', artist: 'Holding Absence', url: 'https://open.spotify.com/album/12qyF8VYd8ceuwyHpGGgw2?si=VZlJ3beFQMmBq7coirWLWQ', cover: 'IMG/album/MLIL.jpg' },
     { title: 'Heavener', artist: 'Invent Animate', url: 'https://open.spotify.com/album/0T0XW3kREbbHdNyqbZAd99?si=DrHAIlagQsqZruz55Zt5qg', cover: 'IMG/album/heavener.jpg' },
     { title: 'Even In Arcadia', artist: 'Sleep Token', url: 'https://open.spotify.com/album/1lS7FeRcSUuIGqyg99UGpj?si=60fd596b898545ea', cover: 'IMG/album/EIA.jpg' },
-    { title: 'POST HUMAN: Nex GEn', artist: 'Bring Me The Horizon', url: 'https://open.spotify.com/album/0e1WaSNDZnoPixaxDNdWo4?si=dfe0d463c4bb4b23', cover: 'IMG/album/PH.jpg' }
+    { title: 'POST HUMAN: Nex GEn', artist: 'Bring Me The Horizon', url: 'https://open.spotify.com/album/1k7OXnGQPV4zF3seDwRroD?si=gSMOQTzGQx-DnQDL-RIgvA', cover: 'IMG/album/PH.jpg' }
   ];
 
   /* Your 4 Spotify playlists. Paste each playlist link into `url`
@@ -133,6 +133,9 @@
   const fmt = s => isFinite(s) ? Math.floor(s / 60) + ':' + String(Math.floor(s % 60)).padStart(2, '0') : '0:00';
   const nice = p => decodeURIComponent(p.split('/').pop()).replace(/\.[^.]+$/, '').replace(/[_-]+/g, ' ');
   const playerEl = $('#music');
+  /* ambient glow behind the cover: a blurred copy of the same picture */
+  const coverImg = document.querySelector('#disc img');
+  if (coverImg) $('#disc').style.setProperty('--cover', 'url("' + coverImg.getAttribute('src') + '")');
   const total = () => isFinite(au.duration) ? au.duration : CLIP;
   const maxStart = () => isFinite(au.duration) ? Math.max(0, Math.floor(au.duration - Math.min(CLIP, au.duration))) : 3600;
 
