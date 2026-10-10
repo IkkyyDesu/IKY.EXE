@@ -805,6 +805,7 @@ input[type="range"] {
 }
 .pbody {
   padding: 1rem;
+  background: radial-gradient(120% 90% at 50% 0%, rgba(246, 185, 172, 0.16), transparent 70%);
 }
 .pbody iframe {
   display: block;
@@ -812,7 +813,8 @@ input[type="range"] {
   height: 352px;
   border: 0;
   border-radius: 12px;
-  background: #02050a;
+  background: linear-gradient(160deg, var(--sky), #0b1a2c 75%);
+  box-shadow: 0 0 36px var(--glow);
 }
 .pbody .open {
   display: inline-block;

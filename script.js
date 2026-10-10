@@ -272,7 +272,7 @@
     plBody.textContent = '';
     if (id) {
       const f = mk('iframe');
-      f.src = 'https://open.spotify.com/embed/playlist/' + id + '?utm_source=generator&theme=0';
+      f.src = 'https://open.spotify.com/embed/playlist/' + id + '?utm_source=generator';
       f.title = p.title + ' on Spotify';
       f.allow = 'autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture';
       const a = mk('a', 'open', 'continue on Spotify ↗');
