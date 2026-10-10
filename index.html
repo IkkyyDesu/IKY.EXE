@@ -14,13 +14,13 @@
 
 <header class="top">
   <a class="logo" href="#home">modern life is lonely</a>
-  <nav id="nav" aria-label="Sections">
-    <a href="#home">Home</a><a href="#about">About</a><a href="#music">Song</a><a href="#albums">Albums</a><a href="#playlists">Playlists</a>
+  <nav id="nav" aria-label="Menu">
+    <a href="#home">Start</a><a href="#about">Profile</a><a href="#music">OST</a><a href="#albums">Discs</a><a href="#playlists">Mixes</a>
   </nav>
 </header>
 
 <main>
-  <div class="ticker" aria-hidden="true"><span>sakura season never ends here ✿ develop slowly ✿ 35mm and a blue afternoon ✿ stay a little longer ✿ sakura season never ends here ✿ develop slowly ✿ 35mm and a blue afternoon ✿ stay a little longer ✿</span></div>
+  <div class="ticker" aria-hidden="true"><span>sakura falls in every ending ✿ one more episode, then sleep ✿ the save file remembers what I forget ✿ press start to feel something ✿ headphones on, world off ✿ sakura falls in every ending ✿ one more episode, then sleep ✿ the save file remembers what I forget ✿ press start to feel something ✿ headphones on, world off ✿</span></div>
 
   <div class="board">
     <!-- PROFILE -->
@@ -30,18 +30,18 @@
         <div class="pfp"><img class="avatar" src="IMG/PFP/mioooo_3.jpeg" alt="Profile picture of IKY"></div>
         <div class="who">
           <h3>IKY</h3>
-          <p class="tag">22 · night owl · film shooter</p>
-          <p class="status"><i class="dot"></i><span id="statusText">awake, listening to rain</span></p>
+          <p class="tag">22 · otaku · gamer · night owl</p>
+          <p class="status"><i class="dot"></i><span id="statusText">idle in the lobby, rain on the window</span></p>
         </div>
       </div>
-      <p class="bio">Anime worlds, unfinished quests, songs that feel like goodbye, and a little too much melancholy.</p>
+      <p class="bio">Anime worlds I never wanted to leave, quests I left unfinished on purpose, and songs that sound like goodbye. A little too much melancholy, saved on every slot.</p>
       <dl class="facts">
-        <div><dt>Local time</dt><dd id="clock">--:--</dd></div>
-        <div><dt>Camera</dt><dd>a secondhand 35mm</dd></div>
-        <div><dt>Wandered here</dt><dd><span id="visits">1</span> times</dd></div>
+        <div><dt>Server time</dt><dd id="clock">--:--</dd></div>
+        <div><dt>Main quest</dt><dd>a long RPG I never want to end</dd></div>
+        <div><dt>Respawned here</dt><dd><span id="visits">1</span> times</dd></div>
       </dl>
-      <p class="mini">Sky mood</p>
-      <div class="moods" role="group" aria-label="Sky mood">
+      <p class="mini">Day–night cycle</p>
+      <div class="moods" role="group" aria-label="Day–night cycle">
         <button data-mood="dawn">Dawn</button><button data-mood="dusk" class="on">Dusk</button><button data-mood="midnight">Midnight</button>
       </div>
     </section>
@@ -51,77 +51,78 @@
          data-src    = audio file path, e.g. "SONG/my-song.mp3" (empty = first file found in SONG/)
          data-title  = name on the player (empty = file name)
          data-artist = small line under the title
+         data-album  = album name, shown next to the artist
          data-start  = second where the 30-second clip begins (75 = 1:15)
          data-length = seconds that play before it loops -->
     <section id="music" class="win player" data-src="SONG/WOAD.mp3" data-title="Whisper Of A Dream" data-artist="Holding Absence" data-album="Modern Life is Lonely" data-start="98" data-length="30">
-      <h2>profile song</h2>
+      <h2>main theme</h2>
       <div class="body">
         <div class="disc" id="disc"><img src="IMG/album/MLIL.jpg" alt=""></div>
         <div class="meta">
-          <p class="song" id="songTitle">No song loaded</p>
-          <p class="sub" id="songSub">Waiting for music</p>
+          <p class="song" id="songTitle">No disc inserted</p>
+          <p class="sub" id="songSub">waiting for the music to start</p>
           <div class="bars" id="bars" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>
         </div>
       </div>
       <div class="wavebox">
-        <canvas id="wave" role="img" aria-label="Waveform of the song with the playing clip highlighted"></canvas>
-        <p class="wavecap"><span>the lit part is your clip</span><b id="clipRange">0:00 – 0:30</b></p>
+        <canvas id="wave" role="img" aria-label="Waveform of the song with the looping part highlighted"></canvas>
+        <p class="wavecap"><span>the glowing part is the loop</span><b id="clipRange">0:00 – 0:30</b></p>
       </div>
-      <div class="seek"><span id="cur">0:00</span><input id="seek" type="range" min="0" max="30" value="0" step="0.1" aria-label="Seek within the clip"><span id="dur">0:30</span></div>
+      <div class="seek"><span id="cur">0:00</span><input id="seek" type="range" min="0" max="30" value="0" step="0.1" aria-label="Seek within the loop"><span id="dur">0:30</span></div>
       <div class="ctrl">
         <button id="play" class="big" aria-label="Play">▶</button>
         <label class="vol"><span class="sr">Volume</span>♪<input id="vol" type="range" min="0" max="1" step="0.01" value="0.7"></label>
       </div>
-      <p id="empty" class="empty" hidden>No song found. Put an .mp3 in <b>SONG/</b> and set <b>data-src</b> on this section in index.html.</p>
+      <p id="empty" class="empty" hidden>No disc found. Drop an .mp3 into <b>SONG/</b> and set <b>data-src</b> on this section in index.html.</p>
     </section>
 
     <!-- FRAMES -->
     <section class="win wide strip">
-      <h2>Social</h2>
+      <h2>friend list</h2>
       <div class="frames" id="frames">
-        <a href="https://instagram.com/ikydesu_">
-          <figure><img src="IMG/PFP/another-mio.jpeg" alt="Open blue sky" style="object-position:70% 8%"><figcaption>IKY DESU</figcaption></figure>
-        </a>
         <a href="https://x.com/Asuna9005">
-          <figure><img src="IMG/PFP/mio_colored.jpeg" style="object-position:20% 20%"><figcaption>Asuna</figcaption></figure>
+          <figure><img src="IMG/PFP/mio_colored.jpeg" alt="Blossom branches against blue" style="object-position:20% 20%"><figcaption>X · static</figcaption></figure>
+        </a>
+        <a href="https://instagram.com/ikydesu_">
+          <figure><img src="IMG/PFP/another-mio.jpeg" alt="Open blue sky" style="object-position:70% 8%"><figcaption>Instagram · frames</figcaption></figure>
         </a>
         <a href="https://bsky.app/profile/iky9005.bsky.social">
-          <figure><img src="IMG/PFP/another-mio-2.jpeg" alt="A reaching hand in silhouette" style="object-position:88% 55%"><figcaption>Ikkyy</figcaption></figure>
+          <figure><img src="IMG/PFP/another-mio-2.jpeg" alt="A reaching hand in silhouette" style="object-position:88% 55%"><figcaption>Bluesky · drift</figcaption></figure>
         </a>
       </div>
     </section>
 
     <!-- FAVORITE ALBUMS + FAVORITES -->
     <section id="albums" class="win albums">
-      <h2>favorite albums</h2>
+      <h2>albums on repeat</h2>
       <ul class="fl" id="albumList"></ul>
     </section>
     <section class="win favs">
-      <h2>favorites</h2>
+      <h2>player stats</h2>
       <dl>
-        <dt>Weather</dt><dd>rain against a train window</dd>
-        <dt>Hour</dt><dd>the one right after sunset</dd>
-        <dt>Snack</dt><dd>convenience-store melon bread</dd>
-        <dt>Flower</dt><dd>cherry blossom, obviously</dd>
-        <dt>Sound</dt><dd>a tape hiss before the music starts</dd>
+        <dt>Ambience</dt><dd>rain on the window, like a quiet cutscene</dd>
+        <dt>Hour</dt><dd>the one right after sunset, when the credits feel close</dd>
+        <dt>Snack</dt><dd>konbini melon bread, eaten between boss fights</dd>
+        <dt>Flower</dt><dd>cherry blossom, obviously: the prettiest thing that never lasts</dd>
+        <dt>BGM</dt><dd>the hush right before the title screen music</dd>
       </dl>
     </section>
 
     <!-- SPOTIFY PLAYLISTS -->
     <section id="playlists" class="win wide pls">
-      <h2>my playlists</h2>
-      <p class="plnote">four little rooms made of sound. tap one to listen.</p>
+      <h2>save slots</h2>
+      <p class="plnote">four save slots made of sound. load one and press play.</p>
       <ul class="plgrid" id="plGrid"></ul>
     </section>
   </div>
 </main>
 
-<dialog id="plDialog" class="pdlg" aria-label="Spotify playlist">
+<dialog id="plDialog" class="pdlg" aria-label="Save slot (Spotify playlist)">
   <header><b id="plTitle"></b><button type="button" id="plClose" aria-label="Close playlist">✕</button></header>
   <div class="pbody" id="plBody"></div>
 </dialog>
 
-<footer>made at 3 a.m. · petals fall for everyone · © IKY</footer>
+<footer>made at 3 a.m. · thanks for playing · petals fall for everyone · © IKY</footer>
 <script src="script.js"></script>
 </body>
 </html>

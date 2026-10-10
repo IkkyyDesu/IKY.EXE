@@ -76,7 +76,7 @@
   tick(); setInterval(tick, 20000);
   const visits = store.get('wod-visits', 0) + 1; store.set('wod-visits', visits); $('#visits').textContent = visits;
 
-  const statuses = { dawn: 'up early, chasing pink light', dusk: 'awake, listening to rain', midnight: 'drifting somewhere past 3 a.m.' };
+  const statuses = { dawn: 'one more quest before the sun comes up', dusk: 'idle in the lobby, rain on the window', midnight: 'past 3 a.m., credits rolling, still awake' };
   function setMood(m) {
     document.documentElement.dataset.mood = m;
     $('#statusText').textContent = statuses[m];
@@ -117,7 +117,7 @@
       im.addEventListener('load', () => { art.textContent = ''; art.append(im); });
       im.src = 'IMG/' + a.cover.replace(/^IMG\//, '');
     }
-    card.append(art, mk('span', 't', a.title), mk('small', '', a.artist || (url ? '▶ open in Spotify' : 'add link in script.js')));
+    card.append(art, mk('span', 't', a.title), mk('small', '', a.artist || (url ? '▶ play on Spotify' : 'add a link in script.js')));
     li.append(card); $('#albumList').append(li);
   });
 
@@ -204,7 +204,7 @@
     song = s; peaks = null;
     au.src = s.src;
     el('songTitle').textContent = s.name;
-    el('songSub').textContent = [s.artist, s.album].filter(Boolean).join(' · ') || 'profile song · ' + CLIP + ' sec clip';
+    el('songSub').textContent = [s.artist, s.album].filter(Boolean).join(' · ') || 'main theme · ' + CLIP + ' sec loop';
     el('empty').hidden = true;
     start = +cfg.start || 0;
     el('seek').value = 0; el('cur').textContent = '0:00';
@@ -222,10 +222,10 @@
     draw(); raf = requestAnimationFrame(frame);
   }
   function toggle() {
-    if (!song) { el('songSub').textContent = 'No song yet. Set data-src in index.html'; return; }
+    if (!song) { el('songSub').textContent = 'No disc inserted. Set data-src in index.html'; return; }
     if (!au.paused) return au.pause();
     if (au.currentTime < start || au.currentTime >= start + len) au.currentTime = start;
-    au.play().catch(() => { el('songSub').textContent = 'tap play to start'; });
+    au.play().catch(() => { el('songSub').textContent = 'tap play to press start'; });
   }
   el('play').addEventListener('click', toggle);
   el('vol').addEventListener('input', e => { vol = au.volume = +e.target.value; e.target.style.setProperty('--p', e.target.value * 100 + '%'); });
@@ -239,7 +239,7 @@
     playerEl.classList.remove('playing'); el('play').textContent = '▶'; el('play').setAttribute('aria-label', 'Play');
   });
   au.addEventListener('ended', () => { au.currentTime = start; au.play().catch(() => {}); });
-  au.addEventListener('error', () => { if (au.src) el('songSub').textContent = "This file couldn't be played"; });
+  au.addEventListener('error', () => { if (au.src) el('songSub').textContent = "This disc won't spin. The file couldn't be played"; });
 
   addEventListener('resize', draw);
   $$('.moods button').forEach(b => b.addEventListener('click', () => setTimeout(draw, 60)));
@@ -261,7 +261,7 @@
     b.setAttribute('aria-label', 'Open ' + p.title);
     im.alt = ''; im.addEventListener('error', () => im.remove());
     im.src = 'IMG/' + (p.cover ? p.cover.replace(/^IMG\//, '') : 'Cover.jpg');
-    b.append(im, mk('em', '', String(i + 1).padStart(2, '0')), mk('strong', '', p.title), mk('small', '', p.note || '▶ tap to listen'));
+    b.append(im, mk('em', '', String(i + 1).padStart(2, '0')), mk('strong', '', p.title), mk('small', '', p.note || '▶ load & listen'));
     b.addEventListener('click', () => openPlaylist(i));
     li.append(b); $('#plGrid').append(li);
   });
@@ -275,11 +275,11 @@
       f.src = 'https://open.spotify.com/embed/playlist/' + id + '?utm_source=generator&theme=0';
       f.title = p.title + ' on Spotify';
       f.allow = 'autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture';
-      const a = mk('a', 'open', 'open in Spotify ↗');
+      const a = mk('a', 'open', 'continue on Spotify ↗');
       a.href = 'https://open.spotify.com/playlist/' + id; a.target = '_blank'; a.rel = 'noopener';
       plBody.append(f, a);
     } else {
-      plBody.append(mk('p', 'empty', "No link yet. Paste this playlist's Spotify URL into PLAYLISTS at the top of script.js."));
+      plBody.append(mk('p', 'empty', "Empty slot. Paste this playlist's Spotify URL into PLAYLISTS at the top of script.js."));
     }
     au.pause(); /* don't talk over the embedded player */
     dlg.showModal ? dlg.showModal() : dlg.setAttribute('open', '');
