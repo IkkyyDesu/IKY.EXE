@@ -1,540 +1,321 @@
-/* ===== CITY BUILDER — Tokyo Edition ===== */
-function buildCity() {
-  const city = document.getElementById('city');
+/* modern life is lonely — vanilla JS, no libraries */
+(() => {
+  'use strict';
 
-  /* Building data — deliberately varied widths + heights for Tokyo skyline feel */
-  const buildings = [
-    { w: 44, h: 110, cols: 2, rows: 5 },
-    { w: 62, h: 160, cols: 3, rows: 7 },
-    { w: 50, h: 130, cols: 2, rows: 6 },
-    { w: 78, h: 200, cols: 4, rows: 9, ant: true },
-    { w: 55, h: 150, cols: 3, rows: 7 },
-    { w: 40, h: 100, cols: 2, rows: 4 },
-    { w: 88, h: 230, cols: 4, rows: 11, ant: true, neon: '#E8002D' },
-    { w: 60, h: 170, cols: 3, rows: 8 },
-    { w: 70, h: 190, cols: 3, rows: 9 },
-    /* ←— Tokyo Tower placeholder slot — inserted by JS — */
-    { w: 52, h: 145, cols: 2, rows: 6 },
-    { w: 95, h: 250, cols: 5, rows: 12, ant: true, neon: '#00C9B1' },
-    { w: 64, h: 175, cols: 3, rows: 8 },
-    { w: 48, h: 125, cols: 2, rows: 5 },
-    { w: 82, h: 215, cols: 4, rows: 10, ant: true },
-    { w: 56, h: 155, cols: 3, rows: 7, neon: '#F5A623' },
-    { w: 44, h: 115, cols: 2, rows: 5 },
-    { w: 72, h: 195, cols: 3, rows: 9 },
-    { w: 90, h: 240, cols: 4, rows: 11, ant: true },
-    { w: 58, h: 160, cols: 3, rows: 7 },
-    { w: 46, h: 120, cols: 2, rows: 5 },
-    { w: 80, h: 210, cols: 4, rows: 10, neon: '#C9B8FF' },
-    { w: 62, h: 170, cols: 3, rows: 8 },
-    { w: 50, h: 135, cols: 2, rows: 6 },
-    { w: 76, h: 200, cols: 3, rows: 9, ant: true },
-    { w: 42, h: 105, cols: 2, rows: 4 },
-    { w: 88, h: 235, cols: 4, rows: 11, ant: true },
-    { w: 54, h: 148, cols: 2, rows: 7 },
-    { w: 66, h: 178, cols: 3, rows: 8 },
-    { w: 100, h: 260, cols: 5, rows: 12, ant: true, neon: '#E8002D' },
-    { w: 48, h: 128, cols: 2, rows: 6 },
+  /* Add image filenames here if your server doesn't expose folder listings.
+     Only list files that really exist in IMG/. */
+  const CONFIG = { images: [] };
+
+
+  /* Your favorite albums (top friends list). For each one:
+       url   = the album's Spotify link, e.g. https://open.spotify.com/album/xxxxxxxx
+       cover = filename of the cover you put in IMG/, e.g. 'my-album.jpg'
+     Until a cover is set, a numbered tile is shown. Add or remove rows freely. */
+ /* Your favorite albums (top friends list). For each one:
+       url   = the album's Spotify link, e.g. https://open.spotify.com/album/xxxxxxxx
+       cover = filename of the cover you put in IMG/, e.g. 'my-album.jpg'
+     Until a cover is set, a numbered tile is shown. Add or remove rows freely. */
+  const ALBUMS = [
+    { title: 'Nurture', artist: 'Porter Robinson', url: 'https://open.spotify.com/album/3QITXlmmt93E176jzVqKUb?si=VZaus-fCTGyxVUrnGeGxGw', cover: 'IMG/album/nurture.jpg' },
+    { title: 'Magic', artist: 'Tayori', url: 'https://open.spotify.com/album/3ebXAhCFDo1PNsQA2RlFOd?si=A5RMWLlfTYO1DQCKNUYvVw', cover: 'IMG/album/magic.jpg' },
+    { title: 'Modern Life is Lonely', artist: 'Holding Absence', url: 'https://open.spotify.com/album/12qyF8VYd8ceuwyHpGGgw2?si=VZlJ3beFQMmBq7coirWLWQ', cover: 'IMG/album/MLIL.jpg' },
+    { title: 'Heavener', artist: 'Invent Animate', url: 'https://open.spotify.com/album/0T0XW3kREbbHdNyqbZAd99?si=DrHAIlagQsqZruz55Zt5qg', cover: 'IMG/album/heavener.jpg' },
+    { title: 'Even In Arcadia', artist: 'Sleep Token', url: 'https://open.spotify.com/album/1lS7FeRcSUuIGqyg99UGpj?si=60fd596b898545ea', cover: 'IMG/album/EIA.jpg' },
+    { title: 'POST HUMAN: Nex GEn', artist: 'Bring Me The Horizon', url: 'https://open.spotify.com/album/0e1WaSNDZnoPixaxDNdWo4?si=dfe0d463c4bb4b23', cover: 'IMG/album/PH.jpg' }
   ];
 
-  /* --- Helper: build one generic building --- */
-  function makeBuilding(b) {
-    const bEl = document.createElement('div');
-    bEl.className = 'building';
+  /* Your 4 Spotify playlists. Paste each playlist link into `url`
+     (e.g. https://open.spotify.com/playlist/xxxxxxxx) and rename the title. */
+  const PLAYLISTS = [
+    { title: 'UPLOAD', note: '', url: 'https://open.spotify.com/playlist/3vXSleEPoPmZd86xJ1IpUj', cover: 'IMG/PLAYLIST/VEIL.jpeg'},
+    { title: 'COMPILE', note: '', url: 'https://open.spotify.com/playlist/5riPAnv9pNJxRVUwlstLMn', cover: 'IMG/PLAYLIST/LURE.jpeg'},
+    { title: 'EXECUTE', note: '', url: 'https://open.spotify.com/playlist/5LoPsc58H9G8NJwoQZ93dK', cover: 'IMG/PLAYLIST/VAST.jpeg'},
+    { title: 'OVERRIDE', note: '', url: 'https://open.spotify.com/playlist/2alBtdff4u7EAIho0mrGEI', cover: 'IMG/PLAYLIST/WANE.jpeg'}
+  ];
 
-    /* Two-tone building colours — alternate between city-wall variants */
-    const useAlt = Math.random() > 0.6;
-    bEl.style.cssText = `
-      width:${b.w}px;
-      height:${b.h}px;
-      background: ${useAlt ? 'var(--city-wall2)' : 'var(--city-wall)'};
-    `;
+  const $ = s => document.querySelector(s);
+  const $$ = s => [...document.querySelectorAll(s)];
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const store = {
+    get(k, d) { try { const v = JSON.parse(localStorage.getItem(k)); return v ?? d; } catch (e) { return d; } },
+    set(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch (e) { /* storage unavailable */ } }
+  };
+  const rnd = (a, b) => a + Math.random() * (b - a);
 
-    /* Antenna */
-    if (b.ant) {
-      const ant = document.createElement('div');
-      ant.className = 'antenna';
-      bEl.appendChild(ant);
-    }
-
-    /* Neon strip */
-    if (b.neon) {
-      const strip = document.createElement('div');
-      strip.className = 'neon-strip';
-      strip.style.cssText = `top: ${20 + Math.random() * 40}%; background: ${b.neon};`;
-      bEl.appendChild(strip);
-    }
-
-    /* Window grid */
-    const winGrid = document.createElement('div');
-    winGrid.className = 'windows';
-    winGrid.style.cssText = `
-      grid-template-columns: repeat(${b.cols}, 1fr);
-      grid-template-rows: repeat(${b.rows}, 1fr);
-    `;
-
-    for (let i = 0; i < b.cols * b.rows; i++) {
-      const win = document.createElement('div');
-      const lit = Math.random() > 0.45;
-      win.className = 'win' + (lit ? ' lit' : '');
-      win.style.animation = 'none';
-
-      /* Mix window colours: teal / gold / white */
-      if (lit) {
-        const r = Math.random();
-        if (r < 0.5)       win.style.background = 'var(--city-window)';      /* teal */
-        else if (r < 0.75) win.style.background = 'var(--city-window-lit)';  /* gold */
-        else               win.style.background = '#FFE0CC';                   /* warm white */
-      }
-      winGrid.appendChild(win);
-    }
-
-    bEl.appendChild(winGrid);
-    return bEl;
-  }
-
-  /* --- Tokyo Tower (pixel-art SVG) --- */
-  function makeTokyoTower() {
-    const wrapper = document.createElement('div');
-    wrapper.className = 'tokyo-tower';
-    /*
-     * KEY FIX:
-     * .city-layer uses align-items:flex-end so children align to bottom.
-     * The SVG must have NO extra whitespace below its last drawn pixel —
-     * we set height="340" and draw the ground bar at y=334 (last 6px),
-     * so the tower bottom sits flush with the flex baseline.
-     * align-self:flex-end + no margin-bottom = touches ground.
-     */
-    wrapper.style.cssText = `
-      align-self: flex-end;
-      margin: 0 6px;
-      flex-shrink: 0;
-      display: block;
-      line-height: 0;
-    `;
-
-    wrapper.innerHTML = `
-      <svg width="90" height="340" viewBox="0 0 90 340"
-           xmlns="http://www.w3.org/2000/svg"
-           style="display:block; image-rendering:pixelated; vertical-align:bottom;">
-
-        <!-- === SPIRE === -->
-        <rect x="42" y="0"  width="6" height="4"  fill="#FFE566"/>  <!-- beacon base -->
-        <rect x="41" y="4"  width="8" height="28" fill="#E8002D"/>
-        <rect x="42" y="32" width="6" height="18" fill="#E8002D"/>
-
-        <!-- === UPPER NARROW SHAFT === -->
-        <rect x="39" y="50" width="12" height="4"  fill="#F5A623"/>  <!-- collar -->
-        <rect x="38" y="54" width="14" height="32" fill="#E8002D"/>
-
-        <!-- === UPPER OBSERVATION DECK === -->
-        <rect x="30" y="86" width="30" height="7"  fill="#F5A623"/>
-
-        <!-- === UPPER TRUSS (two columns) === -->
-        <rect x="33" y="93" width="9"  height="62" fill="#E8002D"/>  <!-- left col -->
-        <rect x="48" y="93" width="9"  height="62" fill="#E8002D"/>  <!-- right col -->
-        <!-- cross braces -->
-        <rect x="33" y="103" width="24" height="4" fill="#F5A623"/>
-        <rect x="33" y="122" width="24" height="4" fill="#F5A623"/>
-        <rect x="33" y="141" width="24" height="4" fill="#F5A623"/>
-
-        <!-- === MAIN OBSERVATION DECK === -->
-        <rect x="24" y="155" width="42" height="8"  fill="#F5A623"/>
-
-        <!-- === LOWER TRUSS (wider) === -->
-        <rect x="26" y="163" width="38" height="4"  fill="#E8002D"/>  <!-- top cap -->
-        <rect x="24" y="167" width="12" height="82" fill="#E8002D"/>   <!-- left col -->
-        <rect x="54" y="167" width="12" height="82" fill="#E8002D"/>   <!-- right col -->
-        <!-- cross braces -->
-        <rect x="24" y="183" width="42" height="4"  fill="#F5A623"/>
-        <rect x="24" y="208" width="42" height="4"  fill="#F5A623"/>
-        <rect x="24" y="233" width="42" height="4"  fill="#F5A623"/>
-
-        <!-- === BASE LEGS (spread outward) === -->
-        <!-- left leg -->
-        <rect x="12" y="249" width="24" height="6"  fill="#E8002D"/>
-        <rect x="7"  y="255" width="29" height="6"  fill="#E8002D"/>
-        <rect x="2"  y="261" width="34" height="6"  fill="#E8002D"/>
-        <rect x="0"  y="267" width="34" height="7"  fill="#C0392B"/>
-        <!-- right leg -->
-        <rect x="54" y="249" width="24" height="6"  fill="#E8002D"/>
-        <rect x="54" y="255" width="29" height="6"  fill="#E8002D"/>
-        <rect x="54" y="261" width="34" height="6"  fill="#E8002D"/>
-        <rect x="56" y="267" width="34" height="7"  fill="#C0392B"/>
-
-        <!-- === BASE PLATFORM (touches ground — last pixels of viewBox) === -->
-        <rect x="0"  y="274" width="90" height="8"  fill="#1B2A6B"/>
-        <rect x="0"  y="282" width="90" height="6"  fill="#0F1A45"/>
-        <!-- fill to very bottom so no gap -->
-        <rect x="4"  y="288" width="82" height="52" fill="#0F1A45"/>
-
-        <!-- === BEACON (blink) === -->
-        <rect x="42" y="0" width="6" height="4" fill="#FFE566"
-              style="animation:towerBlink 1.2s step-end infinite;"/>
-
-        <!-- === DECK WINDOWS === -->
-        <!-- upper deck -->
-        <rect x="33" y="89" width="5" height="4" fill="#00C9B1" opacity="0.95"/>
-        <rect x="41" y="89" width="5" height="4" fill="#00C9B1" opacity="0.95"/>
-        <rect x="49" y="89" width="5" height="4" fill="#00C9B1" opacity="0.95"/>
-        <!-- main deck -->
-        <rect x="27" y="158" width="5" height="4" fill="#F5A623" opacity="0.95"/>
-        <rect x="35" y="158" width="5" height="4" fill="#F5A623" opacity="0.95"/>
-        <rect x="43" y="158" width="5" height="4" fill="#F5A623" opacity="0.95"/>
-        <rect x="52" y="158" width="5" height="4" fill="#F5A623" opacity="0.95"/>
-
-        <style>
-          @keyframes towerBlink {
-            0%,49%  { opacity: 1; }
-            50%,100%{ opacity: 0; }
-          }
-        </style>
-      </svg>
-    `;
-    return wrapper;
-  }
-
-  /* --- Assemble the skyline --- */
-  /* insertTowerAt=18 puts the tower in the right-center area of the skyline,
-     clear of the page panels which sit above the left/center portion */
-  const insertTowerAt = 5;
-
-  buildings.forEach((b, idx) => {
-    city.appendChild(makeBuilding(b));
-    if (idx === insertTowerAt) {
-      city.appendChild(makeTokyoTower());
-    }
-  });
-}
-
-/* ===== STARS BUILDER ===== */
-function buildStars() {
-  const starsEl = document.getElementById('stars');
-  for (let i = 0; i < 200; i++) {
-    const s = document.createElement('div');
-    s.className = 'star';
-    const size = Math.random() > 0.82 ? 4 : 2;
-    s.style.cssText = `
-      width:${size}px; height:${size}px;
-      top:${Math.random() * 65}%;
-      left:${Math.random() * 100}%;
-    `;
-    starsEl.appendChild(s);
-  }
-}
-
-/* ===== CLOUDS BUILDER ===== */
-function buildClouds() {
-  const cloudsEl = document.getElementById('clouds');
-  for (let i = 0; i < 20; i++) {
-    const cloud = document.createElement('div');
-    cloud.className = 'cloud';
-    const w = 80 + Math.random() * 120;
-    const h = 28 + Math.random() * 18;
-    cloud.style.cssText = `
-      width:${w}px; height:${h}px;
-      top:${5 + Math.random() * 28}%;
-      left:${100 + Math.random() * 100}%;
-      animation-duration: ${38 + Math.random() * 60}s;
-      animation-delay: ${-(Math.random() * 45)}s;
-      border-radius: 0;
-      box-shadow:
-        -${w*0.3}px 0 0 ${h*0.2}px white,
-        ${w*0.2}px ${h*0.1}px 0 ${h*0.15}px white,
-        ${w*0.1}px -${h*0.2}px 0 ${h*0.1}px white;
-    `;
-    cloudsEl.appendChild(cloud);
-  }
-}
-
-/* ===== THEME TOGGLE ===== */
-function initTheme() {
-  const saved = localStorage.getItem('theme') || 'light';
-  setTheme(saved);
-}
-
-function setTheme(mode) {
-  document.documentElement.setAttribute('data-theme', mode);
-  const icon  = document.getElementById('toggle-icon');
-  const label = document.getElementById('toggle-label');
-  if (mode === 'dark') {
-    icon.textContent  = '🌙';
-    label.textContent = 'DARK MODE';
-  } else {
-    icon.textContent  = '☀️';
-    label.textContent = 'LIGHT MODE';
-  }
-  localStorage.setItem('theme', mode);
-}
-
-document.getElementById('theme-toggle').addEventListener('click', () => {
-  const current = document.documentElement.getAttribute('data-theme');
-  setTheme(current === 'dark' ? 'light' : 'dark');
-});
-
-/* ===== MODAL ===== */
-function openPlaylist(num, title, genre, desc, embedUrl) {
-  document.getElementById('modal-pl-title').textContent = `// PL-${num} — ${title}`;
-  document.getElementById('modal-pl-desc').textContent  = desc;
-  document.getElementById('modal-title-text').textContent = `🎵 ${title}.mp3`;
-  document.getElementById('spotify-iframe').src = embedUrl + '?utm_source=generator';
-  document.getElementById('modal-overlay').classList.add('active');
-}
-
-function closeModal() {
-  document.getElementById('modal-overlay').classList.remove('active');
-  document.getElementById('spotify-iframe').src = '';
-}
-
-document.getElementById('modal-overlay').addEventListener('click', function(e) {
-  if (e.target === this) closeModal();
-});
-
-/* ===== DRAGGABLE MODAL ===== */
-(function() {
-  const win = document.getElementById('modal-window');
-  const bar = document.getElementById('modal-title-bar');
-  let dragging = false, ox = 0, oy = 0;
-
-  bar.addEventListener('mousedown', e => {
-    dragging = true;
-    const r = win.getBoundingClientRect();
-    ox = e.clientX - r.left;
-    oy = e.clientY - r.top;
-    win.style.position = 'fixed';
-    win.style.margin = '0';
-  });
-
-  document.addEventListener('mousemove', e => {
-    if (!dragging) return;
-    win.style.left = (e.clientX - ox) + 'px';
-    win.style.top  = (e.clientY - oy) + 'px';
-  });
-
-  document.addEventListener('mouseup', () => { dragging = false; });
-})();
-
-/* ===== DYNAMIC MOOD ===== */
-function updateMood() {
-  const moodSpan = document.getElementById('current-mood');
-  if (!moodSpan) return;
-  const h = new Date().getHours();
-  let moodText = '';
-  if      (h >= 0  && h < 5)  moodText = 'deep sleep (￣o￣) . z Z';
-  else if (h >= 5  && h < 8)  moodText = 'woke up (｡-_-｡)';
-  else if (h >= 8  && h < 12) moodText = 'IRL grinding (ง •̀_•́)ง';
-  else if (h >= 12 && h < 13) moodText = 'lunch break (っ˘ڡ˘ς)';
-  else if (h >= 13 && h < 17) moodText = 'chilling ( ¯꒳¯ )';
-  else if (h >= 17 && h < 20) moodText = 'dinner time (っˆڡˆς)';
-  else if (h >= 20 && h < 23) moodText = 'otaku time (☆ω☆)';
-  else                         moodText = 'doom scrolling (눈_눈)';
-  moodSpan.textContent = moodText;
-}
-
-/* ===== MASCOT ===== */
-document.addEventListener('DOMContentLoaded', () => {
-  const mascotImg   = document.getElementById('mascot-img');
-  const speechBubble = document.getElementById('speech-bubble');
-  if (mascotImg && speechBubble) {
-    mascotImg.addEventListener('click', () => {
-      speechBubble.classList.add('show');
-      setTimeout(() => speechBubble.classList.remove('show'), 3000);
-    });
-  }
-});
-
-/* ===== LAMPPOST BUILDER ===== */
-function buildLampposts() {
-  const container = document.getElementById('lampposts');
-  const count = 8;
-  for (let i = 0; i < count; i++) {
-    const post  = document.createElement('div');
-    post.className = 'lamppost';
-    const light = document.createElement('div');
-    light.className = 'lamp-light';
-    post.appendChild(light);
-    container.appendChild(post);
-  }
-}
-
-/* ===== PROFILE SONG WIDGET (Instagram-style profile song) ===== */
-/*
-  Cara ganti lagu:
-  1. Taruh file mp3 kamu di folder IMG/audio/, contoh: IMG/audio/lagu-favorit.mp3
-  2. Ubah atribut src pada tag <audio id="profile-audio"> di index.html
-  3. Ubah teks di #song-title dan #song-artist di index.html sesuai judul/artis lagu kamu
-*/
-function formatTime(sec) {
-  if (!isFinite(sec) || isNaN(sec)) return '0:00';
-  const m = Math.floor(sec / 60);
-  const s = Math.floor(sec % 60).toString().padStart(2, '0');
-  return `${m}:${s}`;
-}
-
-/* Ambil "Artis - Judul" dari nama file, contoh:
-   IMG/audio/LiSA - Gurenge.mp3        -> artist: LiSA, title: Gurenge
-   IMG/audio/execute.mp3               -> title: execute (tanpa artist) */
-function guessTitleFromFilename(src) {
-  try {
-    const fileName = decodeURIComponent(src.split('/').pop().split('?')[0]);
-    const nameNoExt = fileName.replace(/\.[^/.]+$/, '');
-    const sepMatch = nameNoExt.split(/\s*-\s*/);
-    if (sepMatch.length >= 2) {
-      return { artist: sepMatch[0].trim(), title: sepMatch.slice(1).join(' - ').trim() };
-    }
-    return { artist: null, title: nameNoExt.trim() };
-  } catch (e) {
-    return { artist: null, title: 'unknown track' };
-  }
-}
-
-/* Parser ID3v2 super ringan (tanpa library luar) untuk baca
-   tag TIT2 (judul) dan TPE1 (artis) langsung dari file mp3-nya,
-   jadi kalau kamu ganti file mp3-nya, judul & artis ikut berubah otomatis. */
-function parseID3Tags(arrayBuffer) {
-  const view = new Uint8Array(arrayBuffer);
-  if (view.length < 10 || view[0] !== 0x49 || view[1] !== 0x44 || view[2] !== 0x33) {
-    return null; // bukan file dengan header ID3v2
-  }
-  const majorVersion = view[3];
-  const tagSize =
-    ((view[6] & 0x7f) << 21) |
-    ((view[7] & 0x7f) << 14) |
-    ((view[8] & 0x7f) << 7) |
-    (view[9] & 0x7f);
-
-  let offset = 10;
-  const end = Math.min(10 + tagSize, view.length);
-  const result = {};
-
-  function readFrameSize(bytes) {
-    // v2.4 pakai sync-safe (7 bit per byte), v2.3 pakai 8 bit biasa
-    if (majorVersion >= 4) {
-      return ((bytes[0] & 0x7f) << 21) | ((bytes[1] & 0x7f) << 14) | ((bytes[2] & 0x7f) << 7) | (bytes[3] & 0x7f);
-    }
-    return (bytes[0] << 24) | (bytes[1] << 16) | (bytes[2] << 8) | bytes[3];
-  }
-
-  function decodeText(bytes) {
-    if (!bytes.length) return '';
-    const encByte = bytes[0];
-    const body = bytes.slice(1);
+  /* ---------- find real files (folder listing), never guess names ---------- */
+  async function listDir(dir, re) {
     try {
-      if (encByte === 1 || encByte === 2) {
-        return new TextDecoder('utf-16').decode(body).replace(/\u0000/g, '').trim();
-      }
-      if (encByte === 3) {
-        return new TextDecoder('utf-8').decode(body).replace(/\u0000/g, '').trim();
-      }
-      return new TextDecoder('iso-8859-1').decode(body).replace(/\u0000/g, '').trim();
-    } catch (e) {
-      return '';
+      const r = await fetch(dir + '/', { cache: 'no-store' });
+      if (!r.ok) return [];
+      const doc = new DOMParser().parseFromString(await r.text(), 'text/html');
+      return [...doc.querySelectorAll('a')]
+        .map(a => decodeURIComponent((a.getAttribute('href') || '').split('?')[0]))
+        .filter(h => re.test(h))
+        .map(h => dir + '/' + h.split('/').pop());
+    } catch (e) { return []; }
+  }
+  const uniq = a => [...new Set(a)];
+
+  /* ---------- petals ---------- */
+  const petalBox = $('#petals');
+  function makePetal() {
+    const p = document.createElement('span');
+    p.className = 'petal';
+    p.style.setProperty('--s', rnd(10, 20).toFixed(0) + 'px');
+    p.style.setProperty('--l', rnd(0, 100) + '%');
+    p.style.setProperty('--x', rnd(-120, 120) + 'px');
+    p.style.setProperty('--d', rnd(12, 22) + 's');
+    p.style.setProperty('--dl', -rnd(0, 20) + 's');
+    petalBox.appendChild(p);
+  }
+  if (!reduce) for (let i = 0; i < (innerWidth < 700 ? 9 : 16); i++) makePetal();
+
+  /* ---------- profile: clock, visits, mood ---------- */
+  const clock = $('#clock');
+  const tick = () => { clock.textContent = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }); };
+  tick(); setInterval(tick, 20000);
+  const visits = store.get('wod-visits', 0) + 1; store.set('wod-visits', visits); $('#visits').textContent = visits;
+
+  const statuses = { dawn: 'up early, chasing pink light', dusk: 'awake, listening to rain', midnight: 'drifting somewhere past 3 a.m.' };
+  function setMood(m) {
+    document.documentElement.dataset.mood = m;
+    $('#statusText').textContent = statuses[m];
+    $$('.moods button').forEach(b => b.classList.toggle('on', b.dataset.mood === m));
+    store.set('wod-mood', m);
+  }
+  $$('.moods button').forEach(b => b.addEventListener('click', () => setMood(b.dataset.mood)));
+  setMood(store.get('wod-mood', 'dusk'));
+
+  /* active nav link */
+  const links = $$('#nav a');
+  const io = new IntersectionObserver(es => es.forEach(en => {
+    if (en.isIntersecting) links.forEach(a => a.classList.toggle('on', a.getAttribute('href') === '#' + en.target.id));
+  }), { rootMargin: '-40% 0px -55% 0px' });
+  $$('main [id]').forEach(s => io.observe(s));
+
+  /* the hero is gone, so Home and the logo just scroll back to the top */
+  $$('a[href="#home"]').forEach(a => a.addEventListener('click', e => {
+    e.preventDefault(); scrollTo({ top: 0, behavior: reduce ? 'auto' : 'smooth' });
+  }));
+
+  /* ---------- favorite albums (tap = open on Spotify) ---------- */
+  const tints = ['#7fc8ea', '#f6b9ac', '#ffe0d6', '#a9d6f0', '#f3a6b8', '#8fb8e8'];
+  const spotifyLink = u => {
+    const t = String(u || '').trim(), m = t.match(/^spotify:(album|playlist|artist|track):([A-Za-z0-9]+)/);
+    return m ? 'https://open.spotify.com/' + m[1] + '/' + m[2] : (/^https?:\/\//i.test(t) ? t : '');
+  };
+  ALBUMS.forEach((a, i) => {
+    const li = mk('li'), url = spotifyLink(a.url), card = mk(url ? 'a' : 'span', 'al');
+    if (url) {
+      card.href = url; card.target = '_blank'; card.rel = 'noopener';
+      card.setAttribute('aria-label', a.title + (a.artist ? ' by ' + a.artist : '') + ' on Spotify');
     }
-  }
+    const art = mk('b', '', String(i + 1));
+    art.style.setProperty('--c', tints[i % tints.length]);
+    if (a.cover) { /* swap in the cover only once it has loaded; otherwise the numbered tile stays */
+      const im = new Image(); im.alt = '';
+      im.addEventListener('load', () => { art.textContent = ''; art.append(im); });
+      im.src = 'IMG/' + a.cover.replace(/^IMG\//, '');
+    }
+    card.append(art, mk('span', 't', a.title), mk('small', '', a.artist || (url ? '▶ open in Spotify' : 'add link in script.js')));
+    li.append(card); $('#albumList').append(li);
+  });
 
-  while (offset + 10 <= end) {
-    const frameId = String.fromCharCode(view[offset], view[offset + 1], view[offset + 2], view[offset + 3]);
-    if (frameId === '\u0000\u0000\u0000\u0000') break;
+  /* ---------- profile song: waveform + 30-second clip ---------- */
+  const cfg = $('#music').dataset; /* song settings are the data-* attributes in index.html */
+  const CLIP = Math.max(1, +cfg.length || 30);
+  const el = id => document.getElementById(id);
+  const au = new Audio(); au.preload = 'metadata';
+  let song = null, start = 0, len = CLIP, raf = 0, vol = .7, peaks = null;
+  au.volume = vol;
+  const cv = el('wave'), cx = cv.getContext('2d');
+  const css = n => getComputedStyle(document.documentElement).getPropertyValue(n).trim();
+  const fmt = s => isFinite(s) ? Math.floor(s / 60) + ':' + String(Math.floor(s % 60)).padStart(2, '0') : '0:00';
+  const nice = p => decodeURIComponent(p.split('/').pop()).replace(/\.[^.]+$/, '').replace(/[_-]+/g, ' ');
+  const playerEl = $('#music');
+  const total = () => isFinite(au.duration) ? au.duration : CLIP;
+  const maxStart = () => isFinite(au.duration) ? Math.max(0, Math.floor(au.duration - Math.min(CLIP, au.duration))) : 3600;
 
-    const sizeBytes = view.slice(offset + 4, offset + 8);
-    const frameSize = readFrameSize(sizeBytes);
-    if (frameSize <= 0 || offset + 10 + frameSize > view.length) break;
-
-    const frameBody = view.slice(offset + 10, offset + 10 + frameSize);
-
-    if (frameId === 'TIT2') result.title = decodeText(frameBody);
-    if (frameId === 'TPE1') result.artist = decodeText(frameBody);
-
-    offset += 10 + frameSize;
-    if (result.title && result.artist) break;
-  }
-
-  return (result.title || result.artist) ? result : null;
-}
-
-function initProfileSong() {
-  const audio = document.getElementById('profile-audio');
-  const widget = document.getElementById('profile-song');
-  const playBtn = document.getElementById('song-play-btn');
-  const playIcon = document.getElementById('song-play-icon');
-  const fill = document.getElementById('song-progress-fill');
-  const track = document.getElementById('song-progress-track');
-  const curTimeEl = document.getElementById('song-current-time');
-  const titleEl = document.getElementById('song-title');
-  const artistEl = document.getElementById('song-artist');
-
-  if (!audio || !widget) return;
-
-  /* 1) Update cepat dari nama file dulu (langsung tampil, tanpa nunggu fetch) */
-  const guess = guessTitleFromFilename(audio.currentSrc || audio.src);
-  if (titleEl) titleEl.textContent = guess.title || 'unknown track';
-  if (artistEl && guess.artist) artistEl.textContent = guess.artist;
-
-  /* 2) Coba baca tag ID3 asli dari isi file mp3 untuk judul/artis yang lebih akurat.
-        Catatan: ini butuh file dibuka lewat server (http/https), bukan langsung
-        dobel-klik index.html (file://), karena browser membatasi fetch file lokal. */
-  fetch(audio.currentSrc || audio.src)
-    .then((res) => {
-      if (!res.ok) throw new Error('fetch failed');
-      return res.arrayBuffer();
-    })
-    .then((buffer) => {
-      const tags = parseID3Tags(buffer);
-      if (tags) {
-        if (tags.title && titleEl) titleEl.textContent = tags.title;
-        if (tags.artist && artistEl) artistEl.textContent = tags.artist;
-      }
-    })
-    .catch(() => {
-      /* diamkan saja — fallback nama file di atas tetap dipakai */
+  /* waveform: whole song as bars, the chosen clip lit up, a glowing playhead */
+  function draw() {
+    const dpr = devicePixelRatio || 1, w = cv.clientWidth, h = cv.clientHeight;
+    if (!w) return;
+    if (cv.width !== Math.round(w * dpr)) { cv.width = Math.round(w * dpr); cv.height = Math.round(h * dpr); }
+    cx.setTransform(dpr, 0, 0, dpr, 0, 0); cx.clearRect(0, 0, w, h);
+    const bloom = css('--bloom') || '#f6b9ac', sky = css('--sky') || '#3b8fc6';
+    const n = peaks ? peaks.length : 96, bw = w / n, d = total();
+    const x0 = start / d * w, x1 = Math.min(w, (start + len) / d * w), t = (au.currentTime || 0) / d * w;
+    const bar = (x, y, bw2, bh2) => { cx.beginPath(); cx.roundRect ? cx.roundRect(x, y, bw2, bh2, bw2 / 2) : cx.rect(x, y, bw2, bh2); cx.fill(); };
+    for (let i = 0; i < n; i++) {
+      const x = i * bw, mid = x + bw / 2, p = peaks ? peaks[i] : .12 + .06 * Math.sin(i / 2);
+      const bh = Math.max(4, p * h * .84), inClip = mid >= x0 && mid <= x1;
+      cx.fillStyle = inClip ? bloom : sky;
+      cx.globalAlpha = inClip ? (mid <= t ? 1 : .55) : .22;
+      bar(x + .5, (h - bh) / 2, Math.max(1.5, bw - 1.5), bh);
+    }
+    /* viewfinder corners around the clip, like a frame on a contact sheet */
+    cx.fillStyle = bloom; cx.globalAlpha = .08; cx.fillRect(x0, 0, x1 - x0, h);
+    cx.strokeStyle = bloom; cx.globalAlpha = .35; cx.lineWidth = 1;
+    cx.beginPath(); cx.moveTo(x0, .5); cx.lineTo(x1, .5); cx.moveTo(x0, h - .5); cx.lineTo(x1, h - .5); cx.stroke();
+    cx.globalAlpha = 1; cx.lineWidth = 2;
+    [[x0 + 1, 1, 1, 1], [x1 - 1, 1, -1, 1], [x0 + 1, h - 1, 1, -1], [x1 - 1, h - 1, -1, -1]].forEach(([px, py, dx, dy]) => {
+      cx.beginPath(); cx.moveTo(px + dx * 10, py); cx.lineTo(px, py); cx.lineTo(px, py + dy * 10); cx.stroke();
     });
-
-  audio.addEventListener('timeupdate', () => {
-    if (audio.duration) {
-      const pct = (audio.currentTime / audio.duration) * 100;
-      fill.style.width = pct + '%';
-      curTimeEl.textContent = formatTime(audio.currentTime);
+    if (t >= x0 && t <= x1) { /* glowing playhead with a soft halo and a notch */
+      cx.fillStyle = bloom; cx.globalAlpha = .1; cx.fillRect(t - 9, 0, 18, h); cx.globalAlpha = .18; cx.fillRect(t - 3, 0, 6, h);
+      cx.globalAlpha = 1; cx.fillStyle = '#fff'; cx.shadowColor = bloom; cx.shadowBlur = 12; cx.fillRect(t - 1, 0, 2, h); cx.shadowBlur = 0;
+      cx.beginPath(); cx.moveTo(t - 5, 0); cx.lineTo(t + 5, 0); cx.lineTo(t, 6); cx.fill();
     }
+    cx.globalAlpha = 1;
+  }
+
+  async function loadPeaks(s) {
+    const n = 160;
+    try {
+      const ab = await fetch(s.src).then(r => { if (!r.ok) throw 0; return r.arrayBuffer(); });
+      const AC = window.AudioContext || window.webkitAudioContext, ctx = new AC();
+      const ch = (await ctx.decodeAudioData(ab)).getChannelData(0); if (ctx.close) ctx.close();
+      const step = Math.floor(ch.length / n) || 1, out = []; let max = 0;
+      for (let i = 0; i < n; i++) {
+        let m = 0; for (let j = i * step; j < (i + 1) * step; j += Math.max(1, step >> 6)) m = Math.max(m, Math.abs(ch[j] || 0));
+        out.push(m); max = Math.max(max, m);
+      }
+      if (song === s) peaks = out.map(v => Math.pow(v / (max || 1), .7));
+    } catch (e) { /* can't decode (e.g. opened from file://): draw a decorative wave instead */
+      if (song === s) peaks = Array.from({ length: n }, (_, i) => .2 + .55 * Math.abs(Math.sin(i * .37) * Math.cos(i * .11)));
+    }
+    draw();
+  }
+
+  /* keep every readout in sync with the chosen start point */
+  function syncClip() {
+    len = isFinite(au.duration) ? Math.min(CLIP, Math.max(1, au.duration - start)) : CLIP;
+    el('dur').textContent = fmt(len); el('seek').max = len;
+    el('clipRange').textContent = fmt(start) + ' – ' + fmt(start + len);
+    draw();
+  }
+  function setStart(s, jump) {
+    start = Math.max(0, Math.min(isNaN(s) ? 0 : Math.round(s), maxStart()));
+    syncClip();
+    if (jump && song) au.currentTime = start;
+  }
+
+  function loadSong(s) {
+    song = s; peaks = null;
+    au.src = s.src;
+    el('songTitle').textContent = s.name;
+    el('songSub').textContent = [s.artist, s.album].filter(Boolean).join(' · ') || 'profile song · ' + CLIP + ' sec clip';
+    el('empty').hidden = true;
+    start = +cfg.start || 0;
+    el('seek').value = 0; el('cur').textContent = '0:00';
+    syncClip(); loadPeaks(s);
+  }
+  au.addEventListener('loadedmetadata', () => setStart(start, true));
+
+  /* the clip loop, with a soft fade in/out at the edges so it never clicks */
+  function frame() {
+    const t = au.currentTime - start;
+    if (t >= len - .03 || t < -.5) au.currentTime = start;
+    const c = Math.max(0, Math.min(len, au.currentTime - start));
+    au.volume = vol * Math.max(0, Math.min(1, c / .8, (len - c) / .8));
+    el('cur').textContent = fmt(c); el('seek').value = c; el('seek').style.setProperty('--p', c / len * 100 + '%');
+    draw(); raf = requestAnimationFrame(frame);
+  }
+  function toggle() {
+    if (!song) { el('songSub').textContent = 'No song yet. Set data-src in index.html'; return; }
+    if (!au.paused) return au.pause();
+    if (au.currentTime < start || au.currentTime >= start + len) au.currentTime = start;
+    au.play().catch(() => { el('songSub').textContent = 'tap play to start'; });
+  }
+  el('play').addEventListener('click', toggle);
+  el('vol').addEventListener('input', e => { vol = au.volume = +e.target.value; e.target.style.setProperty('--p', e.target.value * 100 + '%'); });
+  el('seek').addEventListener('input', e => { au.currentTime = start + +e.target.value; e.target.style.setProperty('--p', e.target.value / len * 100 + '%'); draw(); });
+  au.addEventListener('play', () => {
+    playerEl.classList.add('playing'); el('play').textContent = '❚❚'; el('play').setAttribute('aria-label', 'Pause');
+    cancelAnimationFrame(raf); frame();
+  });
+  au.addEventListener('pause', () => {
+    cancelAnimationFrame(raf); au.volume = vol; draw();
+    playerEl.classList.remove('playing'); el('play').textContent = '▶'; el('play').setAttribute('aria-label', 'Play');
+  });
+  au.addEventListener('ended', () => { au.currentTime = start; au.play().catch(() => {}); });
+  au.addEventListener('error', () => { if (au.src) el('songSub').textContent = "This file couldn't be played"; });
+
+  addEventListener('resize', draw);
+  $$('.moods button').forEach(b => b.addEventListener('click', () => setTimeout(draw, 60)));
+
+
+  /* ---------- spotify playlists (popup embed) ---------- */
+  const dlg = $('#plDialog'), plBody = $('#plBody');
+  const crops = ['20% 20%', '70% 8%', '88% 55%', '45% 75%'];
+  const spotifyId = u => {
+    const t = String(u || '').trim();
+    const m = t.match(/playlist[\/:]([A-Za-z0-9]{10,})/) || t.match(/^([A-Za-z0-9]{22})$/);
+    return m ? m[1] : '';
+  };
+  function mk(tag, cls, text) { const n = document.createElement(tag); if (cls) n.className = cls; if (text) n.textContent = text; return n; }
+
+  PLAYLISTS.forEach((p, i) => {
+    const li = mk('li'), b = mk('button', 'pl'), im = new Image();
+    b.type = 'button'; b.style.setProperty('--pos', p.cover ? '50% 50%' : crops[i % crops.length]);
+    b.setAttribute('aria-label', 'Open ' + p.title);
+    im.alt = ''; im.addEventListener('error', () => im.remove());
+    im.src = 'IMG/' + (p.cover ? p.cover.replace(/^IMG\//, '') : 'Cover.jpg');
+    b.append(im, mk('em', '', String(i + 1).padStart(2, '0')), mk('strong', '', p.title), mk('small', '', p.note || '▶ tap to listen'));
+    b.addEventListener('click', () => openPlaylist(i));
+    li.append(b); $('#plGrid').append(li);
   });
 
-  audio.addEventListener('ended', () => {
-    widget.classList.remove('playing');
-    playIcon.textContent = '▶';
-    fill.style.width = '0%';
-    curTimeEl.textContent = '0:00';
-  });
-
-  audio.addEventListener('error', () => {
-    curTimeEl.textContent = 'no file';
-  });
-
-  window.toggleProfileSong = function () {
-    if (audio.paused) {
-      audio.play().catch(() => {
-        curTimeEl.textContent = 'no file';
-      });
-      widget.classList.add('playing');
-      playIcon.textContent = '❚❚';
+  function openPlaylist(i) {
+    const p = PLAYLISTS[i], id = spotifyId(p.url);
+    $('#plTitle').textContent = p.title;
+    plBody.textContent = '';
+    if (id) {
+      const f = mk('iframe');
+      f.src = 'https://open.spotify.com/embed/playlist/' + id + '?utm_source=generator&theme=0';
+      f.title = p.title + ' on Spotify';
+      f.allow = 'autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture';
+      const a = mk('a', 'open', 'open in Spotify ↗');
+      a.href = 'https://open.spotify.com/playlist/' + id; a.target = '_blank'; a.rel = 'noopener';
+      plBody.append(f, a);
     } else {
-      audio.pause();
-      widget.classList.remove('playing');
-      playIcon.textContent = '▶';
+      plBody.append(mk('p', 'empty', "No link yet. Paste this playlist's Spotify URL into PLAYLISTS at the top of script.js."));
     }
-  };
+    au.pause(); /* don't talk over the embedded player */
+    dlg.showModal ? dlg.showModal() : dlg.setAttribute('open', '');
+  }
+  $('#plClose').addEventListener('click', () => dlg.close());
+  dlg.addEventListener('click', e => { if (e.target === dlg) dlg.close(); });
+  dlg.addEventListener('close', () => { plBody.textContent = ''; }); /* removing the iframe stops playback */
 
-  window.seekProfileSong = function (e) {
-    if (!audio.duration) return;
-    const rect = track.getBoundingClientRect();
-    const ratio = (e.clientX - rect.left) / rect.width;
-    audio.currentTime = ratio * audio.duration;
-  };
-}
+  /* ---------- social frames: open in a new tab; a broken picture becomes a blank film frame ---------- */
+  $$('#frames a').forEach(a => { a.target = '_blank'; a.rel = 'noopener noreferrer'; });
+  $$('#frames figure').forEach(fig => {
+    const im = fig.querySelector('img');
+    if (!im) return;
+    const blank = () => { fig.classList.add('blank'); im.remove(); };
+    im.addEventListener('error', blank);
+    if (im.complete && !im.naturalWidth) blank();
+  });
 
-/* ===== INIT ===== */
-buildCity();
-buildStars();
-buildClouds();
-initTheme();
-updateMood();
-buildLampposts();
-initProfileSong();
+  /* ---------- boot: discover SONG/ and IMG/ ---------- */
+  (async () => {
+    const [songs, imgs] = await Promise.all([
+      listDir('SONG', /\.(mp3|ogg|wav|m4a|flac|opus|aac)$/i),
+      listDir('IMG', /\.(gif|png|jpe?g|webp)$/i)
+    ]);
+    const src = cfg.src || songs[0] || '';
+    if (src) loadSong({ src, name: cfg.title || nice(src), artist: cfg.artist || '', album: cfg.album || '' });
+    else el('empty').hidden = false;
+
+    /* extra images/GIFs in IMG/ float as polaroids (album covers and Cover.jpg are skipped) */
+    const used = ALBUMS.filter(a => a.cover).map(a => 'IMG/' + a.cover.replace(/^IMG\//, ''));
+    const extra = uniq([...CONFIG.images.map(s => 'IMG/' + s.replace(/^IMG\//, '')), ...imgs])
+      .filter(p => !/Cover\.jpg$/i.test(p) && !used.includes(p));
+    extra.slice(0, 8).forEach((p, i) => {
+      const im = new Image(); im.src = p; im.alt = ''; im.loading = 'lazy';
+      im.style.cssText = `top:${rnd(12, 80)}%;${i % 2 ? 'right' : 'left'}:${rnd(0, 3)}%;--r:${rnd(-8, 8)}deg;animation-delay:${-rnd(0, 8)}s`;
+      $('#floaters').appendChild(im);
+    });
+  })();
+})();
